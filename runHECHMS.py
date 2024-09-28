@@ -53,7 +53,7 @@ for column in index_columns:
     pathString = f"/HUJAN/{column}/PRECIP-INC//1HOUR/SIMULATED/"
 
     # Extract values as a NumPy array
-    values_array = df[column].to_numpy() 
+    values_array = df[column].to_numpy() + 10
 
     # fill DSS
     tsc.values = values_array

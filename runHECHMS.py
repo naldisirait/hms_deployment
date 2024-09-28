@@ -16,8 +16,8 @@ from hecdss import *
 
 
 # Read the Excel file
-# excel_file = 'DataX3.xlsx'
-excel_file = "Contoh data sebelum hecdss.xlsx"
+# excel_file = './data/demo/DataX3.xlsx'
+excel_file = "./data/demo/Contoh data sebelum hecdss.xlsx"
 df = pd.read_excel(excel_file)
 df['time'] = pd.to_datetime(df['time'])
 dateTime = df['time'] 

@@ -106,7 +106,7 @@ def do_prediction():
     #output_ml1 = output_ml1[:,-input_size_ml2:]
     #input_ml2 = np.expand_dims(output_ml1, axis=-1)
     debit_3days, all_debit_from_hms = run_hms_palu(input_hms)
-    input_ml2_hms = debit_3days.reshape((1,len(input_size_ml2),1))
+    input_ml2_hms = debit_3days.reshape((1,input_size_ml2,1))
 
     #print(f"input_ml2 type: {type(input_ml2)}, shape: {input_ml2.shape}")
     #input_ml2 = torch.tensor(input_ml2, dtype=torch.float32)
@@ -135,7 +135,7 @@ def do_prediction():
     end_run_pred = get_current_datetime()
     tend = time.time()
     prediction_runtime = tend-tstart
-    
+
     output = {"Prediction Time Start": str(start_run_pred), 
               "Prediction time Finished": str(end_run_pred), 
               "Prediction Output ml1": dict_output_hms,

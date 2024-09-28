@@ -151,8 +151,8 @@ async def predict():
     output = do_prediction()
     return output
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8002)
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="0.0.0.0", port=8002)
 
 #Local test
 # uvicorn app:app --reload

@@ -1,4 +1,4 @@
-from hms.runHECHMS import run_hms_palu
+from RunHECHMSPalu import run_hms_palu
 from src.utils import inference_model, to_tensor, get_current_datetime, open_json_file
 import numpy as np
 

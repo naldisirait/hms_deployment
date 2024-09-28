@@ -116,7 +116,7 @@ def do_prediction():
     #print(f"output_ml2 raw type: {type(output_ml2)}, shape: {output_ml2.shape}")
     #output_ml2 = output_ml2[0,:].reshape(3078,2019)
     output_ml2_hms = output_ml2_hms[0,:].reshape(3078,2019)
-    print(f"output_ml2 after slicing and reshape type: {type(output_ml2)}, shape: {output_ml2.shape}")
+    #print(f"output_ml2 after slicing and reshape type: {type(output_ml2)}, shape: {output_ml2.shape}")
 
     if np.max(debit_3days) < 200:
         output_ml2 = get_non_flood_depth()
@@ -127,10 +127,9 @@ def do_prediction():
     #ch_wilayah = convert_prec_grided_to_ch_wilayah(prec_grided=all_grided_data, idx_chosen=index_grided_chosen)
     #dates, dict_output_ml1 = output_ml1_to_dict(dates=dates, output_ml1=output_ml1[0,:].tolist(), precipitation=ch_wilayah)
     dates_hms, dict_output_hms = output_ml1_to_dict(dates=dates, output_ml1=debit_3days.tolist(), precipitation=ch_wilayah)
-    debit_3days
 
     #Convert output ml2 to dict
-    dict_output_ml2 = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2)
+    dict_output_ml2 = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2_hms)
     
     end_run_pred = get_current_datetime()
     tend = time.time()

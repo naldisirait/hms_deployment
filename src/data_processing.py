@@ -11,7 +11,11 @@ def convert_df_to_dict_hms(data_path):
     for col in df.columns:
         if "INDEX" in col:
             out[col] = df[col].values
-    return out, dates[672:744]
+
+    df_numeric = df.drop(columns=['time'])
+    array_numeric = df_numeric.to_numpy()
+    ch_wilayah = np.mean(array_numeric, axis=1)
+    return out, ch_wilayah[-144:], dates
 
 def get_input_hms(ingested_data,ingested_data_name, path_conf_grided_to_df,path_config_stas_to_grid,path_config_grid_to_subdas):
     """

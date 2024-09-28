@@ -89,7 +89,7 @@ def do_prediction():
     # print(f"ingested_data type {type(ingested_data)}")
 
     #3.1 Inference ML1
-    input_hms, dates = convert_df_to_dict_hms(data_kasus)
+    input_hms, ch_wilayah, dates = convert_df_to_dict_hms(data_kasus)
     # all_grided_data, dates, input_ml1 =  get_input_ml1(ingested_data,
     #                                                ingested_data_name,
     #                                                path_config_stas_to_grid,
@@ -126,6 +126,8 @@ def do_prediction():
     #Convert output ml1 to dict
     #ch_wilayah = convert_prec_grided_to_ch_wilayah(prec_grided=all_grided_data, idx_chosen=index_grided_chosen)
     #dates, dict_output_ml1 = output_ml1_to_dict(dates=dates, output_ml1=output_ml1[0,:].tolist(), precipitation=ch_wilayah)
+    dates_hms, dict_output_hms = output_ml1_to_dict(dates=dates, output_ml1=debit_3days.tolist(), precipitation=ch_wilayah)
+    debit_3days
 
     #Convert output ml2 to dict
     dict_output_ml2 = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2)
@@ -133,11 +135,10 @@ def do_prediction():
     end_run_pred = get_current_datetime()
     tend = time.time()
     prediction_runtime = tend-tstart
-    dict_output_ml1 = "skip"
-
+    
     output = {"Prediction Time Start": str(start_run_pred), 
               "Prediction time Finished": str(end_run_pred), 
-              "Prediction Output ml1": dict_output_ml1,
+              "Prediction Output ml1": dict_output_hms,
               "Prediction Output ml2": dict_output_ml2}
     
     output = ensure_jsonable(output)

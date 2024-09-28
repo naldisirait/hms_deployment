@@ -18,6 +18,7 @@ from RunHECHMSPalu import run_hms_palu
 #import model ml1 and ml2
 from models.discharge.model_ml1 import load_model_ml1
 from models.inundation.model_ml2  import load_model_ml2
+from app import do_prediction
 
 def get_non_flood_depth():
     path_config_depth = "./configs/conf of non flood.pkl"
@@ -25,95 +26,6 @@ def get_non_flood_depth():
         loaded_data = pickle.load(file)
     depth = loaded_data['depth']
     return depth
-
-
-def do_prediction():
-    tstart = time.time()
-    start_run_pred = get_current_datetime()
-
-    #1. Define all constants and load models
-    hours_hms =  720
-    hours = 144
-    jumlah_subdas = 114
-    input_size_ml1 = hours * jumlah_subdas #jumlah jam dikali jumlah subdas
-    output_size_ml1 = 168 #jumlah debit yang diestimasi, 24 jam terakhir adalah hasil forecast
-    model_ml1 = load_model_ml1(input_size=input_size_ml1, output_size=output_size_ml1)
-
-    input_size_ml2 = 72
-    output_size_ml2 = 3078 * 2019 #rows x columns 
-    model_ml2 = load_model_ml2(input_size=input_size_ml2, output_size=output_size_ml2)
-
-    #2. Ingest Data input
-    data_kasus = "./data/demo/kasus1.xlsx"
-    path_config_stas_to_grid = "./configs/configuration of stasiun to grid.json"
-    path_config_grid_to_subdas = "./configs/configuration of grid to subdas.json"
-    path_config_grid_to_df = "./configs/configuration of grided to df.json"
-
-    conf_grid_to_df = open_json_file(path_config_grid_to_df)
-    index_grided_chosen = conf_grid_to_df['indexes']
-
-    # ingested_data_name, ingested_data, runtime_ingest_data = get_prec_from_big_lake(hours)
-
-    # #ingested_data_name_hms, ingested_data_hms = get_prec_from_big_lake(hours_hms)
-    # print(f"Ingested data runtime {runtime_ingest_data}")
-    # print(f"ingested_data type {type(ingested_data)}")
-
-    #3.1 Inference ML1
-    input_hms, dates = convert_df_to_dict_hms(data_kasus)
-    # all_grided_data, dates, input_ml1 =  get_input_ml1(ingested_data,
-    #                                                ingested_data_name,
-    #                                                path_config_stas_to_grid,
-    #                                                path_config_grid_to_subdas)
-
-    # print(f"Type of all_grided_data {type(all_grided_data)}")
-    # print(f"Type of dates {type(all_grided_data)}")
-    # print(f"Type of input_ml1 {type(input_ml1)}, shape input_ml1: {input_ml1.shape}")
-    
-    # output_ml1 = inference_model(model_ml1,input_ml1)
-    # print(f"Type of output_ml1 {type(output_ml1)}, shape output_ml1: {output_ml1.shape}")
-
-    #4.1 Inference ML2 using output from ML1
-    #output_ml1 = output_ml1[:,-input_size_ml2:]
-    #input_ml2 = np.expand_dims(output_ml1, axis=-1)
-    debit_3days, all_debit_from_hms = run_hms_palu(input_hms)
-    input_ml2_hms = debit_3days.reshape((1,len(input_size_ml2),1))
-
-    #print(f"input_ml2 type: {type(input_ml2)}, shape: {input_ml2.shape}")
-    #input_ml2 = torch.tensor(input_ml2, dtype=torch.float32)
-    input_ml2_hms = torch.tensor(input_ml2_hms, dtype=torch.float32)
-    #output_ml2 = inference_model(model_ml2, input_ml2)
-    output_ml2_hms = inference_model(model_ml2, input_ml2_hms)
-    #print(f"output_ml2 raw type: {type(output_ml2)}, shape: {output_ml2.shape}")
-    #output_ml2 = output_ml2[0,:].reshape(3078,2019)
-    output_ml2_hms = output_ml2_hms[0,:].reshape(3078.2019)
-    print(f"output_ml2 after slicing and reshape type: {type(output_ml2)}, shape: {output_ml2.shape}")
-
-    if np.max(debit_3days) < 200:
-        output_ml2 = get_non_flood_depth()
-        output_ml2_hms = get_non_flood_depth()
-
-    #5. Bundle the Output
-    #Convert output ml1 to dict
-    #ch_wilayah = convert_prec_grided_to_ch_wilayah(prec_grided=all_grided_data, idx_chosen=index_grided_chosen)
-    #dates, dict_output_ml1 = output_ml1_to_dict(dates=dates, output_ml1=output_ml1[0,:].tolist(), precipitation=ch_wilayah)
-
-    #Convert output ml2 to dict
-    dict_output_ml2 = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2)
-    
-    end_run_pred = get_current_datetime()
-    tend = time.time()
-    prediction_runtime = tend-tstart
-    dict_output_ml1 = "skip"
-    
-    output = {"Prediction Time Start": str(start_run_pred), 
-              "Prediction time Finished": str(end_run_pred), 
-              "Prediction Output ml1": dict_output_ml1,
-              "Prediction Output ml2": dict_output_ml2}
-    
-    output = ensure_jsonable(output)
-    print(f"Prediction time {prediction_runtime}s")
-
-    return output
 
 if __name__ == "__main__":
     output = do_prediction()

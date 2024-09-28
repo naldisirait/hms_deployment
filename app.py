@@ -115,7 +115,7 @@ def do_prediction():
     output_ml2_hms = inference_model(model_ml2, input_ml2_hms)
     #print(f"output_ml2 raw type: {type(output_ml2)}, shape: {output_ml2.shape}")
     #output_ml2 = output_ml2[0,:].reshape(3078,2019)
-    output_ml2_hms = output_ml2_hms[0,:].reshape(3078.2019)
+    output_ml2_hms = output_ml2_hms[0,:].reshape(3078,2019)
     print(f"output_ml2 after slicing and reshape type: {type(output_ml2)}, shape: {output_ml2.shape}")
 
     if np.max(debit_3days) < 200:

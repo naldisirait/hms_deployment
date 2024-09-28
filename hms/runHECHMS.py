@@ -100,21 +100,19 @@ if __name__ == "__main__":
     
     # Run HEC-HMS with the control script
     run_hec_hms(control_script_path)
-	
-#import matplotlib.pyplot as plt
 
-# Open a DSS file
-file_loc = "./HECHMS_Update1/HMSPalu"
-file_name = "JAN2024.dss"
+# # Open a DSS file
+# file_loc = "./HECHMS_Update1/HMSPalu"
+# file_name = "JAN2024.dss"
 
-file_path = file_loc + '/' + file_name
-print(file_path)
-dss = HecDss(file_path)
-# Retrieve and print data
-data_path = "//Outlet-Banjir/FLOW//1Hour/RUN:JAN2024/"
-#t1 = datetime(2024, 1, 1)    
-data = dss.get(data_path)
-#print(data.values)
-Val = data.values
-#plt.plot(Val)
-print(Val)
+# file_path = file_loc + '/' + file_name
+# print(file_path)
+# dss = HecDss(file_path)
+# # Retrieve and print data
+# data_path = "//Outlet-Banjir/FLOW//1Hour/RUN:JAN2024/"
+# #t1 = datetime(2024, 1, 1)    
+# data = dss.get(data_path)
+# #print(data.values)
+# Val = data.values
+# #plt.plot(Val)
+# print(Val)

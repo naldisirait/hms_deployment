@@ -76,7 +76,7 @@ def create_control_script(script_path, project_name, project_path, run_name):
 def run_hec_hms(script_path):
     """Run HEC-HMS using the generated script."""
     #hec_hms_cmd = "hec-hms"
-    hec_hms_cmd = "/home/mhews/ews_deployment/hms/HEC-HMS-4.12/hec-hms.sh"
+    hec_hms_cmd = "/home/mhews/old_deployment/hms/HEC-HMS-4.12/hec-hms.sh"
     command = [hec_hms_cmd, "-s", script_path]
     
     try:

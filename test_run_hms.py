@@ -12,5 +12,5 @@ for index in index_grided_chosen:
     dumm_prec[f"INDEX{index}"] = np.random.rand(720) + 2
 
 if __name__ == "__main__":
-    value = run_hms_palu(dumm_prec)
-    print(f"Return debit the last 3 days is {value}")
+    value_72, all_value = run_hms_palu(dumm_prec)
+    print(f"Return debit the last 3 days is {value_72}")

@@ -1,4 +1,3 @@
-#import modules
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
@@ -20,31 +19,6 @@ from RunHECHMSPalu import run_hms_palu
 from models.discharge.model_ml1 import load_model_ml1
 from models.inundation.model_ml2  import load_model_ml2
 
-def get_input_debit_sample(name):
-    try:
-        with open('Kasus Validasi ML2.pkl', 'rb') as file:
-            data = pickle.load(file)
-        
-        debit = data[name]  # Ensure 'debit' is extracted correctly
-        len_flat = len(debit)
-
-        # Make sure 'debit' is a NumPy array
-        if not isinstance(debit, np.ndarray):
-            debit = np.array(debit)  # Convert to a NumPy array if it's not already
-        debit = debit.tolist()
-        # Convert to a PyTorch tensor
-        debit = torch.tensor(debit, dtype=torch.float32)
-        #debit = torch.from_numpy(debit)
-
-        # Reshape to match the required shape
-        debit = debit.reshape(1, len_flat)
-        debit = debit.numpy()
-
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        raise  # Re-raise the error after logging it
-    return debit
-
 def get_non_flood_depth():
     path_config_depth = "./configs/conf of non flood.pkl"
     with open(path_config_depth,"rb") as file:
@@ -52,11 +26,7 @@ def get_non_flood_depth():
     depth = loaded_data['depth']
     return depth
 
-# Define input data model
-class InputData(BaseModel):
-    inputs: List[List[float]]
 
-app = FastAPI()
 def do_prediction():
     tstart = time.time()
     start_run_pred = get_current_datetime()
@@ -134,7 +104,7 @@ def do_prediction():
     tend = time.time()
     prediction_runtime = tend-tstart
     dict_output_ml1 = "skip"
-
+    
     output = {"Prediction Time Start": str(start_run_pred), 
               "Prediction time Finished": str(end_run_pred), 
               "Prediction Output ml1": dict_output_ml1,
@@ -145,10 +115,5 @@ def do_prediction():
 
     return output
 
-@app.post("/predict")
-async def predict():
+if __name__ == "__main__":
     output = do_prediction()
-    return output
-
-#Local test
-# uvicorn app:app --reload

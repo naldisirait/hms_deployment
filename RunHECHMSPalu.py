@@ -99,4 +99,4 @@ def run_hms_palu(precip_dict):
     data = dss.get(data_path)
     Val = data.values
     print(Val)
-    return Val[672:744]
+    return Val[672:744], Val

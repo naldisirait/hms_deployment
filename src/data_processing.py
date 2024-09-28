@@ -3,6 +3,16 @@ import torch
 import pandas as pd
 import json
 
+def convert_df_to_dict_hms(data_path):
+    df = pd.read_excel(data_path)
+    dates = df['time'].values
+    columns = df.columns
+    out = {}
+    for col in df.columns:
+        if "INDEX" in col:
+            out[col] = df[col].values
+    return out, dates[672:744]
+
 def get_input_hms(ingested_data,ingested_data_name, path_conf_grided_to_df,path_config_stas_to_grid,path_config_grid_to_subdas):
     """
     Function to get the input of hec hms, grided to dataframe

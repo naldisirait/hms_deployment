@@ -8,6 +8,7 @@ import time
 import pickle
 import torch
 from datetime import datetime
+import uvicorn
 
 #import modul from this project
 from src.data_processing import get_input_ml1, get_input_hms, convert_prec_grided_to_ch_wilayah, open_json_file, convert_df_to_dict_hms
@@ -149,6 +150,9 @@ def do_prediction():
 async def predict():
     output = do_prediction()
     return output
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 
 #Local test
 # uvicorn app:app --reload

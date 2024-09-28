@@ -80,7 +80,7 @@ def run_hec_hms(script_path):
     command = [hec_hms_cmd, "-s", script_path]
     try:
         # Run the HEC-HMS command
-        process = subprocess.run(command, check=True, capture_output=False, text=False)
+        process = subprocess.run(command, check=True, capture_output=True, text=True)
         print("HEC-HMS ran successfully.")
         print("Output:")
         print(process.stdout)

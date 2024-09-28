@@ -3,9 +3,47 @@ import torch
 import pandas as pd
 import json
 
+def convert_to_standard_date(date_input):
+    """
+    Convert the input date to the format '%Y-%m-%d %H:%M:%S'.
+    Handles numpy.datetime64 and various string formats.
+    """
+    # Check if input is of type numpy.datetime64
+    if isinstance(date_input, np.datetime64):
+        # Convert numpy.datetime64 to datetime object
+        date_input = date_input.astype('M8[s]').astype(datetime)
+        return date_input.strftime('%Y-%m-%d %H:%M:%S')
+    
+    # List of possible date formats to check for string inputs
+    date_formats = [
+        '%Y-%m-%d %H:%M:%S',  # Full date and time
+        '%Y-%m-%d %H:%M',     # Date and time without seconds
+        '%Y-%m-%d',           # Date without time
+        '%Y/%m/%d',           # Date with slashes
+        '%d-%m-%Y',           # Day-Month-Year format
+        '%d/%m/%Y',           # Day/Month/Year with slashes
+        '%Y%m%d',             # Compact date format
+        '%d-%b-%Y',           # Date with month as abbreviation (e.g., 28-Sep-2024)
+        '%B %d, %Y',          # Full month name (e.g., September 28, 2024)
+        '%b %d, %Y'           # Abbreviated month name (e.g., Sep 28, 2024)
+    ]
+    
+    # Try to parse the input if it is a string or another non-numpy datetime input
+    for date_format in date_formats:
+        try:
+            parsed_date = datetime.strptime(str(date_input), date_format)
+            return parsed_date.strftime('%Y-%m-%d %H:%M:%S')  # Convert to standard format
+        except ValueError:
+            continue
+
+    # If none of the formats match, raise an error or handle the invalid input
+    raise ValueError(f"Unrecognized date format: {date_input}. Please provide a valid date.")
+
+
 def convert_df_to_dict_hms(data_path):
     df = pd.read_excel(data_path)
     dates = df['time'].values
+    new_date = [convert_to_standard_date(i) for i in dates]
     columns = df.columns
     out = {}
     for col in df.columns:
@@ -15,7 +53,7 @@ def convert_df_to_dict_hms(data_path):
     df_numeric = df.drop(columns=['time'])
     array_numeric = df_numeric.to_numpy()
     ch_wilayah = np.mean(array_numeric, axis=1)
-    return out, ch_wilayah[-144:], dates
+    return out, ch_wilayah[-144:], new_date
 
 def get_input_hms(ingested_data,ingested_data_name, path_conf_grided_to_df,path_config_stas_to_grid,path_config_grid_to_subdas):
     """

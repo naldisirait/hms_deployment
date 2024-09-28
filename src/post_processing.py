@@ -95,7 +95,6 @@ def generate_next_24_hours(start_date_str):
         list: A list of strings representing the next 24 hours.
     """
     # Convert the start_date_str to a datetime object
-    start_date_str = convert_to_standard_date(start_date_str)
     start_date = datetime.strptime(start_date_str, '%Y-%m-%d %H:%M:%S')
 
     # Generate the next 24 hours

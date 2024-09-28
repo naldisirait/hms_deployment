@@ -1,4 +1,0 @@
-from hms.model.JythonHms import *
-OpenProject("HMSPalu", "./HECHMS_Update1/HMSPalu")
-Compute("JAN2024")
-Exit(1)

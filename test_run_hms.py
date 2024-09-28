@@ -9,7 +9,7 @@ index_grided_chosen = conf_grid_to_df['indexes']
 
 dumm_prec = {}
 for index in index_grided_chosen:
-    dumm_prec[f"INDEX{index}"] = np.random.rand(720)
+    dumm_prec[f"INDEX{index}"] = np.random.rand(720) + 2
 
 if __name__ == "__main__":
     value = run_hms_palu(dumm_prec)

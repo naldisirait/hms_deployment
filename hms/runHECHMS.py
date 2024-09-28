@@ -14,57 +14,6 @@ import subprocess
 from hecdss import *
 #from datetime import datetime
 
-
-# Read the Excel file
-excel_file = 'DataX3.xlsx'
-#excel_file = "Contoh data sebelum hecdss.xlsx"
-df = pd.read_excel(excel_file)
-df['time'] = pd.to_datetime(df['time'])
-dateTime = df['time'] 
-
-# Read the Excel file
-#excel_file = 'Contoh data sebelum hecdss.xlsx'
-#df = pd.read_excel(excel_file)
-
-# Prepare .dss files
-dssIn = HecDss("sample7.dss") #Use this file as a reference.
-tsc = dssIn.get("//SACRAMENTO/PRECIP-INC//1Day/OBS/")  # read example due to unexpected error when do independent writing
-tsc.units = "MM"
-
-# Prepare datetime
-start_date = datetime.datetime(2024, 1, 1, 0, 0)
-end_date = datetime.datetime(2024, 1, 30, 23, 0)
-# Calculate the number of hours between the two dates
-num_hours = int((end_date - start_date).total_seconds() // 3600)
-# Create a list of hourly datetime objects
-dates = [start_date + datetime.timedelta(hours=i) for i in range(num_hours + 1)]
-
-# Loop through each column in index_columns
-index_columns = [col for col in df.columns if col.startswith('INDEX')]
-
-dssOutFile = "./HECHMS_Update1/CH/GridGSMAP_corrected.dss"
-
-# Check if the file exists
-if os.path.exists(dssOutFile):
-    os.remove(dssOutFile)
-
-for column in index_columns:
-    dssOut = HecDss(dssOutFile)
-    pathString = f"/HUJAN/{column}/PRECIP-INC//1HOUR/SIMULATED/"
-
-    # Extract values as a NumPy array
-    values_array = df[column].to_numpy() 
-
-    # fill DSS
-    tsc.values = values_array
-    tsc.times = dates
-    tsc.id = pathString
-    dssOut.put(tsc)
-    dssOut.close()
-
-# Manage dss 
-dssIn.close()
-
 def create_control_script(script_path, project_name, project_path, run_name):
     """Create the HEC-HMS control script."""
     with open(script_path, 'w') as script_file:
@@ -89,7 +38,47 @@ def run_hec_hms(script_path):
         print("An error occurred while running HEC-HMS:")
         print(e.stderr)
 
-if __name__ == "__main__":
+def run_hms_palu(precip_dict):
+    """
+    function to run HMS
+    Args:
+        precip_dict(dict): key(str), val(np.array)
+    Returns:
+        debit(array):
+    """
+    # Prepare .dss files
+    dssIn = HecDss("sample7.dss") #Use this file as a reference.
+    tsc = dssIn.get("//SACRAMENTO/PRECIP-INC//1Day/OBS/")  # read example due to unexpected error when do independent writing
+    tsc.units = "MM"
+
+    # Prepare datetime
+    start_date = datetime.datetime(2024, 1, 1, 0, 0)
+    end_date = datetime.datetime(2024, 1, 30, 23, 0)
+    # Calculate the number of hours between the two dates
+    num_hours = int((end_date - start_date).total_seconds() // 3600)
+    # Create a list of hourly datetime objects
+    dates = [start_date + datetime.timedelta(hours=i) for i in range(num_hours + 1)]
+
+    dssOutFile = "./HECHMS_Update1/CH/GridGSMAP_corrected.dss"
+
+    # Check if the file exists
+    if os.path.exists(dssOutFile):
+        os.remove(dssOutFile)
+
+    for key,val in precip_dict.items():
+        dssOut = HecDss(dssOutFile)
+        pathString = f"/HUJAN/{key}/PRECIP-INC//1HOUR/SIMULATED/"
+
+        # fill DSS
+        tsc.values = val
+        tsc.times = dates
+        tsc.id = pathString
+        dssOut.put(tsc)
+        dssOut.close()
+
+    # Manage dss 
+    dssIn.close()
+
     project_name = "HMSPalu"
     project_path = "./HECHMS_Update1/HMSPalu"  # Update to your project path
     run_name = "JAN2024"
@@ -101,18 +90,15 @@ if __name__ == "__main__":
     # Run HEC-HMS with the control script
     run_hec_hms(control_script_path)
 
-# Open a DSS file
-file_loc = "./HECHMS_Update1/HMSPalu"
-file_name = "JAN2024.dss"
+    # Open a DSS file
+    file_loc = "./HECHMS_Update1/HMSPalu"
+    file_name = "JAN2024.dss"
 
-file_path = file_loc + '/' + file_name
-print(file_path)
-dss = HecDss(file_path)
-# Retrieve and print data
-data_path = "//Outlet-Banjir/FLOW//1Hour/RUN:JAN2024/"
-#t1 = datetime(2024, 1, 1)    
-data = dss.get(data_path)
-#print(data.values)
-Val = data.values
-#plt.plot(Val)
-print(Val)
+    file_path = file_loc + '/' + file_name
+    dss = HecDss(file_path)
+    # Retrieve and print data
+    data_path = "//Outlet-Banjir/FLOW//1Hour/RUN:JAN2024/"    
+    data = dss.get(data_path)
+    Val = data.values
+    print(Val)
+    return Val[672:744]

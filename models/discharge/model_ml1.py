@@ -130,7 +130,7 @@ def load_model_ml1(input_size, output_size):
     #trained_model_ml1 = 'models/discharge/trained model/Ml_1_lr_e4_bs_32_resnet.pth'
     
     # Dynamically construct the full path
-    trained_model_ml1 = os.path.join("/opt", "ews", "ews_deployment", "models", "discharge", "trained_model", "Ml 1 without filtering prec.pth")
+    trained_model_ml1 = os.path.join("/home", "mhews", "hms_deployment", "models", "discharge", "trained_model", "Ml 1 without filtering prec.pth")
     #trained_model_ml1 = '/opt/ews/ews_deployment/models/discharge/trained model/Ml 1 without filtering prec.pth'
     # Load the saved weights into the model
     model.load_state_dict(torch.load(trained_model_ml1, map_location=torch.device("cpu")))

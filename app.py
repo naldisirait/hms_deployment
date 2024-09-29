@@ -173,7 +173,7 @@ def do_prediction():
     output = ensure_jsonable(output)
     print(f"Prediction time {prediction_runtime}s")
 
-    # return output
+    return output
 
 @app.post("/predict")
 async def predict():

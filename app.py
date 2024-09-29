@@ -144,9 +144,11 @@ def do_prediction():
 
     # #5. Bundle the Output
     # #Convert output ml1 to dict
-    # dates, dict_output_ml1 = output_ml1_to_dict(dates=dates, output_ml1=output_ml1.tolist(), precipitation=ch_wilayah)
-    # dates, dict_output_hms = output_ml1_to_dict(dates=dates, output_ml1=debit_3days.tolist(), precipitation=ch_wilayah)
+    print(f"type of output_ml1 is {type(dates)}, dates: {dates}")
 
+    dates, dict_output_ml1 = output_ml1_to_dict(dates=dates, output_ml1=output_ml1[0,:].tolist(), precipitation=ch_wilayah)
+    dates, dict_output_hms = output_ml1_to_dict(dates=dates, output_ml1=debit_3days.tolist(), precipitation=ch_wilayah)
+    print("Berhasil bundle dict out 1")
     # #Convert output ml2 to dict
     # dict_output_ml2_from_hms = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2_from_hms)
     # dict_output_ml2_from_ml1 = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2_from_ml1)

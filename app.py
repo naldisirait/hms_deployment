@@ -144,7 +144,7 @@ def do_prediction():
 
     # #5. Bundle the Output
     # #Convert output ml1 to dict
-    print(f"type of output_ml1 is {type(dates)}, dates: {dates}")
+    print(f"type of output_ml1 is {type(dates)}, panjang dates: {len(dates)}")
 
     dates, dict_output_ml1 = output_ml1_to_dict(dates=dates, output_ml1=output_ml1[0,:].tolist(), precipitation=ch_wilayah)
     dates, dict_output_hms = output_ml1_to_dict(dates=dates, output_ml1=debit_3days.tolist(), precipitation=ch_wilayah)

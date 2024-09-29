@@ -146,21 +146,21 @@ def do_prediction():
     # #Convert output ml1 to dict
     print(f"type of dates is {type(dates)}, panjang dates: {len(dates)}")
 
-    dates, dict_output_ml1 = output_ml1_to_dict(dates=dates, output_ml1=output_ml1[0,:].tolist(), precipitation=ch_wilayah)
-    dates, dict_output_hms = output_ml1_to_dict(dates=dates, output_ml1=debit_3days.tolist(), precipitation=ch_wilayah)
+    dates_forecast, dict_output_ml1 = output_ml1_to_dict(dates=dates, output_ml1=output_ml1[0,:].tolist(), precipitation=ch_wilayah)
+    dates_forecast, dict_output_hms = output_ml1_to_dict(dates=dates, output_ml1=debit_3days.tolist(), precipitation=ch_wilayah)
     for key,val in dict_output_ml1.items():
         print(key,val)
 
     for key,val in dict_output_ml1.items():
         print(key,val)
     
-    print(f"Panjang dates setelah dipotong pakai ml1: {len(dates)}")
+    print(f"Panjang dates_forecast setelah dipotong add forecast: {len(dates_forecast)}")
     print("Berhasil bundle dict out 1")
 
     #Convert output ml2 to dict
-    dict_output_ml2_from_hms = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2_from_hms)
-    dict_output_ml2_from_ml1 = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2_from_ml1)
-    
+    dict_output_ml2_from_hms = output_ml2_to_dict(dates=dates_forecast[-input_size_ml2:],output_ml2=output_ml2_from_hms)
+    dict_output_ml2_from_ml1 = output_ml2_to_dict(dates=dates_forecast[-input_size_ml2:],output_ml2=output_ml2_from_ml1)
+
     print("cek key, val dari output dict2 ml2 hms")
     for key,val in dict_output_ml2_from_hms.items():
         print(key,len(val))

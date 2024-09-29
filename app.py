@@ -74,7 +74,7 @@ class InputData(BaseModel):
 
 app = FastAPI()
 def do_prediction():
-    input_debit = "hms"
+    input_debit = "ml1"
     tstart = time.time()
     start_run_pred = get_current_datetime()
 
@@ -91,7 +91,7 @@ def do_prediction():
     model_ml2 = load_model_ml2(input_size=input_size_ml2, output_size=output_size_ml2)
 
     #2. Ingest Data input
-    pesan = "popeye"
+    pesan = "not popeye"
     filename_demo = "./data/demo/hujan_kasus1.xlsx"
     path_config_stas_to_grid = "./configs/configuration of stasiun to grid.json"
     path_config_grid_to_subdas = "./configs/configuration of grid to subdas.json"

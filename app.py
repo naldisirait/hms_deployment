@@ -91,7 +91,8 @@ def do_prediction():
     model_ml2 = load_model_ml2(input_size=input_size_ml2, output_size=output_size_ml2)
 
     #2. Ingest Data input
-    filename_demo = "./data/demo/hujan_kasus2.xlsx"
+    pesan = "popeye"
+    filename_demo = "./data/demo/hujan_kasus1.xlsx"
     path_config_stas_to_grid = "./configs/configuration of stasiun to grid.json"
     path_config_grid_to_subdas = "./configs/configuration of grid to subdas.json"
     path_config_grid_to_df = "./configs/configuration of grided to df.json"
@@ -150,7 +151,7 @@ def do_prediction():
               "Prediction time Finished": str(end_run_pred), 
               "Prediction Output ml1": dict_out1,
               "Prediction Output ml2": dict_out2,
-              "test output": "ddungs"}
+              "test output": pesan}
     
     output = ensure_jsonable(output)
     print(f"Prediction time {prediction_runtime}s")

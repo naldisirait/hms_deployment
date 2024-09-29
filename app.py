@@ -8,10 +8,10 @@ import time
 import pickle
 import torch
 from datetime import datetime
-import uvicorn
+import pandas as pd
 
 #import modul from this project
-from src.data_processing import get_input_ml1, get_input_hms, convert_prec_grided_to_ch_wilayah, open_json_file, convert_df_to_dict_hms
+from src.data_processing import transform_input_demo_into_ready_to_use, get_input_ml1, get_latest_n_entries, open_json_file, convert_df_to_dict_hms
 from src.data_ingesting import get_prec_from_big_lake
 from src.utils import inference_model, to_tensor, get_current_datetime, open_json_file
 from src.post_processing import output_ml1_to_dict, output_ml2_to_dict, ensure_jsonable
@@ -21,30 +21,35 @@ from RunHECHMSPalu import run_hms_palu
 from models.discharge.model_ml1 import load_model_ml1
 from models.inundation.model_ml2  import load_model_ml2
 
-def get_input_debit_sample(name):
-    try:
-        with open('Kasus Validasi ML2.pkl', 'rb') as file:
-            data = pickle.load(file)
-        
-        debit = data[name]  # Ensure 'debit' is extracted correctly
-        len_flat = len(debit)
+def data_demo_to_input_hms(filename_demo,path_config_stas_to_grid,path_config_grid_to_subdas, path_conf_grided_to_df):
+    ingested_data_name = "Stasiun"
+    ingested_data = transform_input_demo_into_ready_to_use(filename_demo)
+    all_grided_data, dates, _ =  get_input_ml1(ingested_data,
+                                               ingested_data_name,
+                                               path_config_stas_to_grid,
+                                               path_config_grid_to_subdas)
+    
+    conf_grided_to_df = open_json_file(path_conf_grided_to_df)
+    indexes = conf_grided_to_df['indexes']
+    grided_prec = np.array(all_grided_data)
+    t, len_lat, len_lon = grided_prec.shape
+    prec = np.reshape(grided_prec, (t,-1))
+    dict_prec = {'time' : dates}
+    for idx in indexes:
+        dict_prec[f'INDEX{idx}'] = prec[:,idx]
+    df = pd.DataFrame(dict_prec)
+    input_hms, ch_wilayah, dates = convert_df_to_dict_hms(df)
+    return input_hms, ch_wilayah, dates
 
-        # Make sure 'debit' is a NumPy array
-        if not isinstance(debit, np.ndarray):
-            debit = np.array(debit)  # Convert to a NumPy array if it's not already
-        debit = debit.tolist()
-        # Convert to a PyTorch tensor
-        debit = torch.tensor(debit, dtype=torch.float32)
-        #debit = torch.from_numpy(debit)
-
-        # Reshape to match the required shape
-        debit = debit.reshape(1, len_flat)
-        debit = debit.numpy()
-
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        raise  # Re-raise the error after logging it
-    return debit
+def data_demo_to_input_ml1(hours,filename_demo,path_config_stas_to_grid,path_config_grid_to_subdas):
+    ingested_data_name = "Stasiun"
+    ingested_data = transform_input_demo_into_ready_to_use(filename_demo)
+    ingested_data = get_latest_n_entries(ingested_data,hours)
+    all_grided_data, dates, input_ml1 =  get_input_ml1(ingested_data,
+                                                       ingested_data_name,
+                                                       path_config_stas_to_grid,
+                                                       path_config_grid_to_subdas)
+    return input_ml1
 
 def get_non_flood_depth():
     path_config_depth = "./configs/conf of non flood.pkl"
@@ -53,12 +58,23 @@ def get_non_flood_depth():
     depth = loaded_data['depth']
     return depth
 
+def get_input_ml2_hms(filename_demo,input_size_ml2, path_config_stas_to_grid, path_config_grid_to_subdas, path_conf_grided_to_df):
+    input_hms, ch_wilayah, dates = data_demo_to_input_hms(filename_demo,
+                                                          path_config_stas_to_grid,
+                                                          path_config_grid_to_subdas, 
+                                                          path_conf_grided_to_df)
+    debit_3days, all_debit_from_hms = run_hms_palu(input_hms)
+    input_ml2_hms = debit_3days.reshape((1,input_size_ml2,1))
+    input_ml2_hms = torch.tensor(input_ml2_hms, dtype=torch.float32)
+    return input_ml2_hms, debit_3days, all_debit_from_hms, ch_wilayah, dates
+
 # Define input data model
 class InputData(BaseModel):
     inputs: List[List[float]]
 
 app = FastAPI()
 def do_prediction():
+    input_debit = "hms"
     tstart = time.time()
     start_run_pred = get_current_datetime()
 
@@ -75,71 +91,65 @@ def do_prediction():
     model_ml2 = load_model_ml2(input_size=input_size_ml2, output_size=output_size_ml2)
 
     #2. Ingest Data input
-    data_kasus = "./data/demo/kasus2.xlsx"
+    filename_demo = "./data/demo/kasus2.xlsx"
     path_config_stas_to_grid = "./configs/configuration of stasiun to grid.json"
     path_config_grid_to_subdas = "./configs/configuration of grid to subdas.json"
     path_config_grid_to_df = "./configs/configuration of grided to df.json"
 
-    conf_grid_to_df = open_json_file(path_config_grid_to_df)
-    index_grided_chosen = conf_grid_to_df['indexes']
-
-    # ingested_data_name, ingested_data, runtime_ingest_data = get_prec_from_big_lake(hours)
-
-    # #ingested_data_name_hms, ingested_data_hms = get_prec_from_big_lake(hours_hms)
-    # print(f"Ingested data runtime {runtime_ingest_data}")
-    # print(f"ingested_data type {type(ingested_data)}")
-
     #3.1 Inference ML1
-    input_hms, ch_wilayah, dates = convert_df_to_dict_hms(data_kasus)
-    # all_grided_data, dates, input_ml1 =  get_input_ml1(ingested_data,
-    #                                                ingested_data_name,
-    #                                                path_config_stas_to_grid,
-    #                                                path_config_grid_to_subdas)
-
-    # print(f"Type of all_grided_data {type(all_grided_data)}")
-    # print(f"Type of dates {type(all_grided_data)}")
-    # print(f"Type of input_ml1 {type(input_ml1)}, shape input_ml1: {input_ml1.shape}")
-    
-    # output_ml1 = inference_model(model_ml1,input_ml1)
-    # print(f"Type of output_ml1 {type(output_ml1)}, shape output_ml1: {output_ml1.shape}")
+    input_ml1 = data_demo_to_input_ml1(hours=hours,
+                                       filename_demo=filename_demo,
+                                       path_config_stas_to_grid=path_config_stas_to_grid,
+                                       path_config_grid_to_subdas=path_config_grid_to_subdas)
+    output_ml1 = inference_model(model_ml1,input_ml1)
 
     #4.1 Inference ML2 using output from ML1
-    #output_ml1 = output_ml1[:,-input_size_ml2:]
-    #input_ml2 = np.expand_dims(output_ml1, axis=-1)
-    debit_3days, all_debit_from_hms = run_hms_palu(input_hms)
-    input_ml2_hms = debit_3days.reshape((1,input_size_ml2,1))
+    output_ml1 = output_ml1[:,-input_size_ml2:]
+    input_ml2_from_ml1 = np.expand_dims(output_ml1, axis=-1)
 
     #print(f"input_ml2 type: {type(input_ml2)}, shape: {input_ml2.shape}")
-    #input_ml2 = torch.tensor(input_ml2, dtype=torch.float32)
-    input_ml2_hms = torch.tensor(input_ml2_hms, dtype=torch.float32)
-    #output_ml2 = inference_model(model_ml2, input_ml2)
-    output_ml2_hms = inference_model(model_ml2, input_ml2_hms)
-    #print(f"output_ml2 raw type: {type(output_ml2)}, shape: {output_ml2.shape}")
-    #output_ml2 = output_ml2[0,:].reshape(3078,2019)
-    output_ml2_hms = output_ml2_hms[0,:].reshape(3078,2019)
+    input_ml2_from_ml1 = torch.tensor(input_ml2_from_ml1, dtype=torch.float32)
+    output_ml2_from_ml1 = inference_model(model_ml2, input_ml2_from_ml1)
+    output_ml2_from_ml1 = output_ml2_from_ml1[0,:].reshape(3078,2019)
+    
     #print(f"output_ml2 after slicing and reshape type: {type(output_ml2)}, shape: {output_ml2.shape}")
+    input_ml2_from_hms, debit_3days, all_debit_from_hms, ch_wilayah, dates = get_input_ml2_hms(filename_demo=filename_demo,
+                                                                                               input_size_ml2=input_size_ml2, 
+                                                                                               path_config_stas_to_grid=path_config_stas_to_grid,
+                                                                                               path_config_grid_to_subdas=path_config_grid_to_subdas,
+                                                                                               path_conf_grided_to_df=path_config_grid_to_df)
+    output_ml2_from_hms = inference_model(model_ml2, input_ml2_from_hms)
+    output_ml2_from_hms = output_ml2_from_hms[0,:].reshape(3078,2019)
 
     if np.max(debit_3days) < 200:
-        output_ml2 = get_non_flood_depth()
-        output_ml2_hms = get_non_flood_depth()
+        output_ml2_from_hms = get_non_flood_depth()
+
+    if np.max(output_ml1)< 200:
+        output_ml2_from_ml1 = get_non_flood_depth()
 
     #5. Bundle the Output
     #Convert output ml1 to dict
-    #ch_wilayah = convert_prec_grided_to_ch_wilayah(prec_grided=all_grided_data, idx_chosen=index_grided_chosen)
-    #dates, dict_output_ml1 = output_ml1_to_dict(dates=dates, output_ml1=output_ml1[0,:].tolist(), precipitation=ch_wilayah)
-    dates_hms, dict_output_hms = output_ml1_to_dict(dates=dates, output_ml1=debit_3days.tolist(), precipitation=ch_wilayah)
+    dates, dict_output_ml1 = output_ml1_to_dict(dates=dates, output_ml1=output_ml1.tolist(), precipitation=ch_wilayah)
+    dates, dict_output_hms = output_ml1_to_dict(dates=dates, output_ml1=debit_3days.tolist(), precipitation=ch_wilayah)
 
     #Convert output ml2 to dict
-    dict_output_ml2 = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2_hms)
-    
+    dict_output_ml2_from_hms = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2_from_hms)
+    dict_output_ml2_from_ml1 = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2_from_ml1)
+
     end_run_pred = get_current_datetime()
     tend = time.time()
     prediction_runtime = tend-tstart
+    if input_debit == "hms":
+        dict_out1 = dict_output_hms
+        dict_out2 = dict_output_ml2_from_hms
+    else:
+        dict_out1 = dict_output_ml1
+        dict_out2 = dict_output_ml2_from_ml1
 
     output = {"Prediction Time Start": str(start_run_pred), 
               "Prediction time Finished": str(end_run_pred), 
-              "Prediction Output ml1": dict_output_hms,
-              "Prediction Output ml2": dict_output_ml2}
+              "Prediction Output ml1": dict_out1,
+              "Prediction Output ml2": dict_out2}
     
     output = ensure_jsonable(output)
     print(f"Prediction time {prediction_runtime}s")

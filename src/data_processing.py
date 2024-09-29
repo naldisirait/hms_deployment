@@ -4,6 +4,48 @@ import pandas as pd
 import json
 from datetime import datetime, timedelta
 
+def transform_input_demo_into_ready_to_use(filename):
+    """
+    convert input demo data into ready to process
+    Args:
+        filename(str): excel filename of data input dummy
+    Returns:
+        output(dict): data ready to use for preprocessing to input ml1 or hms
+    """
+    data = pd.read_excel(filename)
+    output = {}
+    for t in data['time']:
+        df = data[data['time'] == t]
+        df = df.drop('time', axis=1)
+        df = df.melt(var_name='name', value_name='rainfall')
+        date = t.strftime('%Y-%m-%d %H:%M:%S')
+        output[date] = df
+    return output
+
+def get_latest_n_entries(data_dict, n):
+    """
+    Returns a dictionary containing the n latest entries from the input dictionary.
+    
+    Args:
+    data_dict (dict): Dictionary with date-time strings as keys and arrays as values.
+    n (int): Number of latest entries to retrieve.
+    
+    Returns:
+    dict: A dictionary containing the n latest entries.
+    """
+    # Sort the dictionary by keys (dates) and convert them to datetime
+    sorted_keys = sorted(
+        data_dict.keys(), 
+        key=lambda x: datetime.strptime(x, '%Y-%m-%d %H:%M:%S'), 
+        reverse=False
+    )
+    print(sorted_keys)
+    
+    # Get the n latest keys and their corresponding values
+    latest_dict = {key: data_dict[key] for key in sorted_keys[-n:]}
+    
+    return latest_dict
+
 def convert_to_standard_date(date_input):
     """
     Convert the input date to the format '%Y-%m-%d %H:%M:%S'.
@@ -40,9 +82,9 @@ def convert_to_standard_date(date_input):
     # If none of the formats match, raise an error or handle the invalid input
     raise ValueError(f"Unrecognized date format: {date_input}. Please provide a valid date.")
 
-
-def convert_df_to_dict_hms(data_path):
-    df = pd.read_excel(data_path)
+def convert_df_to_dict_hms(df, data_path=None):
+    if data_path:
+        df = pd.read_excel(data_path)
     dates = df['time'].values
     new_date = [convert_to_standard_date(i) for i in dates]
     columns = df.columns
@@ -50,7 +92,6 @@ def convert_df_to_dict_hms(data_path):
     for col in df.columns:
         if "INDEX" in col:
             out[col] = df[col].values
-
     df_numeric = df.drop(columns=['time'])
     array_numeric = df_numeric.to_numpy()
     ch_wilayah = np.mean(array_numeric, axis=1)

@@ -72,7 +72,7 @@ def convert_to_standard_date(date_input):
         '%B %d, %Y',          # Full month name (e.g., September 28, 2024)
         '%b %d, %Y'           # Abbreviated month name (e.g., Sep 28, 2024)
     ]
-    
+
     # Try to parse the input if it is a string or another non-numpy datetime input
     for date_format in date_formats:
         try:
@@ -87,16 +87,13 @@ def convert_to_standard_date(date_input):
 def generate_next_24_hours(start_date_str):
     """
     Generate the next 24 hourly timestamps as strings starting from the given date string.
-    
     Args:
         start_date_str (str): The starting date as a string.
-    
     Returns:
         list: A list of strings representing the next 24 hours.
     """
     # Convert the start_date_str to a datetime object
     start_date = datetime.strptime(start_date_str, '%Y-%m-%d %H:%M:%S')
-
     # Generate the next 24 hours
     next_24_hours = [(start_date + timedelta(hours=i)).strftime('%Y-%m-%d %H:%M:%S') for i in range(1, 25)]
     
@@ -106,7 +103,6 @@ def output_ml1_to_dict(dates, output_ml1, precipitation):
     next_24hr = generate_next_24_hours(dates[-1])
     dates = dates + next_24hr
     time_data = dates[-len(output_ml1):]
-    
     # Ensure `precipitation` is serialized
     dict_output_ml1 = {
         "name": "wl", 
@@ -128,7 +124,6 @@ def output_ml2_to_dict(dates, output_ml2):
         "inundation": output_ml2.tolist()  # This ensures it's serialized
     }
     return dict_output_ml2
-
 
 def convert_array_to_tif(data_array, filename, meta=None):
     """

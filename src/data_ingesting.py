@@ -5,10 +5,36 @@ from datetime import datetime, timedelta
 import os
 import pickle
 import pandas as pd
+import torch
 import time
 
 # os.environ['HADOOP_HOME'] = '/etc/hadoop'
 # os.environ['HADOOP_CONF_DIR'] = '/etc/hadoop/conf'
+
+def get_input_debit_sample(name):
+    try:
+        with open('Kasus Validasi ML2.pkl', 'rb') as file:
+            data = pickle.load(file)
+        
+        debit = data[name]  # Ensure 'debit' is extracted correctly
+        len_flat = len(debit)
+
+        # Make sure 'debit' is a NumPy array
+        if not isinstance(debit, np.ndarray):
+            debit = np.array(debit)  # Convert to a NumPy array if it's not already
+        debit = debit.tolist()
+        # Convert to a PyTorch tensor
+        debit = torch.tensor(debit, dtype=torch.float32)
+        #debit = torch.from_numpy(debit)
+
+        # Reshape to match the required shape
+        debit = debit.reshape(1, len_flat)
+        debit = debit.numpy()
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        raise  # Re-raise the error after logging it
+    return debit
 
 def get_prec_from_big_lake(hours):
     tstart = time.time()

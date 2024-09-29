@@ -148,7 +148,13 @@ def do_prediction():
 
     dates, dict_output_ml1 = output_ml1_to_dict(dates=dates, output_ml1=output_ml1[0,:].tolist(), precipitation=ch_wilayah)
     dates, dict_output_hms = output_ml1_to_dict(dates=dates, output_ml1=debit_3days.tolist(), precipitation=ch_wilayah)
-    print("Panjang dates setelah dipotong pakai ml1")
+    for key,val in dict_output_ml1.items():
+        print(key,val)
+        
+    for key,val in dict_output_ml1.items():
+        print(key,val)
+    
+    print(f"Panjang dates setelah dipotong pakai ml1: {len(dates)}")
     print("Berhasil bundle dict out 1")
     #Convert output ml2 to dict
     dict_output_ml2_from_hms = output_ml2_to_dict(dates=dates,output_ml2=output_ml2_from_hms)

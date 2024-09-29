@@ -148,29 +148,30 @@ def do_prediction():
 
     dates, dict_output_ml1 = output_ml1_to_dict(dates=dates, output_ml1=output_ml1[0,:].tolist(), precipitation=ch_wilayah)
     dates, dict_output_hms = output_ml1_to_dict(dates=dates, output_ml1=debit_3days.tolist(), precipitation=ch_wilayah)
+    print("Panjang dates setelah dipotong pakai ml1")
     print("Berhasil bundle dict out 1")
-    # #Convert output ml2 to dict
-    # dict_output_ml2_from_hms = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2_from_hms)
-    # dict_output_ml2_from_ml1 = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2_from_ml1)
+    #Convert output ml2 to dict
+    dict_output_ml2_from_hms = output_ml2_to_dict(dates=dates,output_ml2=output_ml2_from_hms)
+    dict_output_ml2_from_ml1 = output_ml2_to_dict(dates=dates,output_ml2=output_ml2_from_ml1)
 
-    # end_run_pred = get_current_datetime()
-    # tend = time.time()
-    # prediction_runtime = tend-tstart
-    # if input_debit == "hms":
-    #     dict_out1 = dict_output_hms
-    #     dict_out2 = dict_output_ml2_from_hms
-    # else:
-    #     dict_out1 = dict_output_ml1
-    #     dict_out2 = dict_output_ml2_from_ml1
+    end_run_pred = get_current_datetime()
+    tend = time.time()
+    prediction_runtime = tend-tstart
+    if input_debit == "hms":
+        dict_out1 = dict_output_hms
+        dict_out2 = dict_output_ml2_from_hms
+    else:
+        dict_out1 = dict_output_ml1
+        dict_out2 = dict_output_ml2_from_ml1
 
-    # output = {"Prediction Time Start": str(start_run_pred), 
-    #           "Prediction time Finished": str(end_run_pred), 
-    #           "Prediction Output ml1": dict_out1,
-    #           "Prediction Output ml2": dict_out2,
-    #           "test output": pesan}
+    output = {"Prediction Time Start": str(start_run_pred), 
+              "Prediction time Finished": str(end_run_pred), 
+              "Prediction Output ml1": dict_out1,
+              "Prediction Output ml2": dict_out2,
+              "test output": pesan}
     
-    # output = ensure_jsonable(output)
-    # print(f"Prediction time {prediction_runtime}s")
+    output = ensure_jsonable(output)
+    print(f"Prediction time {prediction_runtime}s")
 
     # return output
 

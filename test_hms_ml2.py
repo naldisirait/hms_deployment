@@ -20,12 +20,5 @@ from models.discharge.model_ml1 import load_model_ml1
 from models.inundation.model_ml2  import load_model_ml2
 from app import do_prediction
 
-def get_non_flood_depth():
-    path_config_depth = "./configs/conf of non flood.pkl"
-    with open(path_config_depth,"rb") as file:
-        loaded_data = pickle.load(file)
-    depth = loaded_data['depth']
-    return depth
-
 if __name__ == "__main__":
     output = do_prediction()

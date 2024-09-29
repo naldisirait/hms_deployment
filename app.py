@@ -102,61 +102,65 @@ def do_prediction():
                                        filename_demo=filename_demo,
                                        path_config_stas_to_grid=path_config_stas_to_grid,
                                        path_config_grid_to_subdas=path_config_grid_to_subdas)
+    
+    print(f"input_ml1 type{type(input_ml1)}, shape of input_ml1 {input_ml1.shape}")
     output_ml1 = inference_model(model_ml1,input_ml1)
 
     #4.1 Inference ML2 using output from ML1
     output_ml1 = output_ml1[:,-input_size_ml2:]
     input_ml2_from_ml1 = np.expand_dims(output_ml1, axis=-1)
 
-    #print(f"input_ml2 type: {type(input_ml2)}, shape: {input_ml2.shape}")
-    input_ml2_from_ml1 = torch.tensor(input_ml2_from_ml1, dtype=torch.float32)
-    output_ml2_from_ml1 = inference_model(model_ml2, input_ml2_from_ml1)
-    output_ml2_from_ml1 = output_ml2_from_ml1[0,:].reshape(3078,2019)
+    print("Berhasil inference ml1")
+
+    # #print(f"input_ml2 type: {type(input_ml2)}, shape: {input_ml2.shape}")
+    # input_ml2_from_ml1 = torch.tensor(input_ml2_from_ml1, dtype=torch.float32)
+    # output_ml2_from_ml1 = inference_model(model_ml2, input_ml2_from_ml1)
+    # output_ml2_from_ml1 = output_ml2_from_ml1[0,:].reshape(3078,2019)
     
-    #print(f"output_ml2 after slicing and reshape type: {type(output_ml2)}, shape: {output_ml2.shape}")
-    input_ml2_from_hms, debit_3days, all_debit_from_hms, ch_wilayah, dates = get_input_ml2_hms(filename_demo=filename_demo,
-                                                                                               input_size_ml2=input_size_ml2, 
-                                                                                               path_config_stas_to_grid=path_config_stas_to_grid,
-                                                                                               path_config_grid_to_subdas=path_config_grid_to_subdas,
-                                                                                               path_conf_grided_to_df=path_config_grid_to_df)
-    output_ml2_from_hms = inference_model(model_ml2, input_ml2_from_hms)
-    output_ml2_from_hms = output_ml2_from_hms[0,:].reshape(3078,2019)
+    # #print(f"output_ml2 after slicing and reshape type: {type(output_ml2)}, shape: {output_ml2.shape}")
+    # input_ml2_from_hms, debit_3days, all_debit_from_hms, ch_wilayah, dates = get_input_ml2_hms(filename_demo=filename_demo,
+    #                                                                                            input_size_ml2=input_size_ml2, 
+    #                                                                                            path_config_stas_to_grid=path_config_stas_to_grid,
+    #                                                                                            path_config_grid_to_subdas=path_config_grid_to_subdas,
+    #                                                                                            path_conf_grided_to_df=path_config_grid_to_df)
+    # output_ml2_from_hms = inference_model(model_ml2, input_ml2_from_hms)
+    # output_ml2_from_hms = output_ml2_from_hms[0,:].reshape(3078,2019)
 
-    if np.max(debit_3days) < 200:
-        output_ml2_from_hms = get_non_flood_depth()
+    # if np.max(debit_3days) < 200:
+    #     output_ml2_from_hms = get_non_flood_depth()
 
-    if np.max(output_ml1)< 200:
-        output_ml2_from_ml1 = get_non_flood_depth()
+    # if np.max(output_ml1)< 200:
+    #     output_ml2_from_ml1 = get_non_flood_depth()
 
-    #5. Bundle the Output
-    #Convert output ml1 to dict
-    dates, dict_output_ml1 = output_ml1_to_dict(dates=dates, output_ml1=output_ml1.tolist(), precipitation=ch_wilayah)
-    dates, dict_output_hms = output_ml1_to_dict(dates=dates, output_ml1=debit_3days.tolist(), precipitation=ch_wilayah)
+    # #5. Bundle the Output
+    # #Convert output ml1 to dict
+    # dates, dict_output_ml1 = output_ml1_to_dict(dates=dates, output_ml1=output_ml1.tolist(), precipitation=ch_wilayah)
+    # dates, dict_output_hms = output_ml1_to_dict(dates=dates, output_ml1=debit_3days.tolist(), precipitation=ch_wilayah)
 
-    #Convert output ml2 to dict
-    dict_output_ml2_from_hms = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2_from_hms)
-    dict_output_ml2_from_ml1 = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2_from_ml1)
+    # #Convert output ml2 to dict
+    # dict_output_ml2_from_hms = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2_from_hms)
+    # dict_output_ml2_from_ml1 = output_ml2_to_dict(dates=dates[-input_size_ml2:],output_ml2=output_ml2_from_ml1)
 
-    end_run_pred = get_current_datetime()
-    tend = time.time()
-    prediction_runtime = tend-tstart
-    if input_debit == "hms":
-        dict_out1 = dict_output_hms
-        dict_out2 = dict_output_ml2_from_hms
-    else:
-        dict_out1 = dict_output_ml1
-        dict_out2 = dict_output_ml2_from_ml1
+    # end_run_pred = get_current_datetime()
+    # tend = time.time()
+    # prediction_runtime = tend-tstart
+    # if input_debit == "hms":
+    #     dict_out1 = dict_output_hms
+    #     dict_out2 = dict_output_ml2_from_hms
+    # else:
+    #     dict_out1 = dict_output_ml1
+    #     dict_out2 = dict_output_ml2_from_ml1
 
-    output = {"Prediction Time Start": str(start_run_pred), 
-              "Prediction time Finished": str(end_run_pred), 
-              "Prediction Output ml1": dict_out1,
-              "Prediction Output ml2": dict_out2,
-              "test output": pesan}
+    # output = {"Prediction Time Start": str(start_run_pred), 
+    #           "Prediction time Finished": str(end_run_pred), 
+    #           "Prediction Output ml1": dict_out1,
+    #           "Prediction Output ml2": dict_out2,
+    #           "test output": pesan}
     
-    output = ensure_jsonable(output)
-    print(f"Prediction time {prediction_runtime}s")
+    # output = ensure_jsonable(output)
+    # print(f"Prediction time {prediction_runtime}s")
 
-    return output
+    # return output
 
 @app.post("/predict")
 async def predict():

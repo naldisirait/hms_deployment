@@ -109,13 +109,16 @@ def do_prediction():
     #4.1 Inference ML2 using output from ML1
     output_ml1 = output_ml1[:,-input_size_ml2:]
     input_ml2_from_ml1 = np.expand_dims(output_ml1, axis=-1)
+    print(f"type of input_ml2_from_ml1 is {type(input_ml2_from_ml1)}, shapes :{input_ml2_from_ml1.shape}")
 
     print("Berhasil inference ml1")
+    input_ml2_from_ml1 = torch.tensor(input_ml2_from_ml1, dtype=torch.float32)
+    output_ml2_from_ml1 = inference_model(model_ml2, input_ml2_from_ml1)
+    output_ml2_from_ml1 = output_ml2_from_ml1[0,:].reshape(3078,2019)
 
-    # #print(f"input_ml2 type: {type(input_ml2)}, shape: {input_ml2.shape}")
-    # input_ml2_from_ml1 = torch.tensor(input_ml2_from_ml1, dtype=torch.float32)
-    # output_ml2_from_ml1 = inference_model(model_ml2, input_ml2_from_ml1)
-    # output_ml2_from_ml1 = output_ml2_from_ml1[0,:].reshape(3078,2019)
+    print(f"type of output_ml2_from_ml1 is {type(output_ml2_from_ml1)}, shapes :{output_ml2_from_ml1.shape}")
+
+    print("Berhasil inference ml2")
     
     # #print(f"output_ml2 after slicing and reshape type: {type(output_ml2)}, shape: {output_ml2.shape}")
     # input_ml2_from_hms, debit_3days, all_debit_from_hms, ch_wilayah, dates = get_input_ml2_hms(filename_demo=filename_demo,

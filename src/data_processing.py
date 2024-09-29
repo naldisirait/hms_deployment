@@ -39,8 +39,6 @@ def get_latest_n_entries(data_dict, n):
         key=lambda x: datetime.strptime(x, '%Y-%m-%d %H:%M:%S'), 
         reverse=False
     )
-    print(sorted_keys)
-    
     # Get the n latest keys and their corresponding values
     latest_dict = {key: data_dict[key] for key in sorted_keys[-n:]}
     

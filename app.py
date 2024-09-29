@@ -149,7 +149,8 @@ def do_prediction():
     output = {"Prediction Time Start": str(start_run_pred), 
               "Prediction time Finished": str(end_run_pred), 
               "Prediction Output ml1": dict_out1,
-              "Prediction Output ml2": dict_out2}
+              "Prediction Output ml2": dict_out2,
+              "test output": "ddungs"}
     
     output = ensure_jsonable(output)
     print(f"Prediction time {prediction_runtime}s")

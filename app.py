@@ -138,6 +138,7 @@ def do_prediction():
 
     if np.max(output_ml1)< 200:
         output_ml2_from_ml1 = get_non_flood_depth()
+        print(f"type of non flood is {type(output_ml2_from_ml1)}")
         print(f"debit max ml1 dibawah 200, debit max {np.max(output_ml1)}")
     print(f"type of output_ml1 is {type(output_ml1)}, shapes :{output_ml1.shape}")
     print("Berhasil cek debit")

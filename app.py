@@ -74,7 +74,7 @@ class InputData(BaseModel):
 
 app = FastAPI()
 def do_prediction():
-    input_debit = "ml1"
+    input_debit = "hms"
     tstart = time.time()
     start_run_pred = get_current_datetime()
 

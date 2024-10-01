@@ -88,7 +88,7 @@ if __name__ == "__main__":
 
     #set constants
     total_simulated = 0 #total simulated before
-    total_sim = 20 #total simulation to run
+    total_sim = 20000 #total simulation to run
     window_size = 720 #total hours of precipitation input
     step_size = 1 #step size for slicing
     n_cpus = 6 #number of cpus used for simulation, you need to match the total project paths HECHMSUpdate1 copied

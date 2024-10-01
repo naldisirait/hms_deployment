@@ -33,7 +33,7 @@ def run_hms_with_mp(config_and_data):
                     "end date precip": end_date,
                     "data prcip": data_precip,
                     "data debit": all_val_debit}
-    filename = f"data/output_hms/start hujan {start_dates} end hujan {end_dates}.pkl"
+    filename = f"data/output_hms/start hujan {start_date} end hujan {end_date}.pkl"
     # Open the file in write-binary mode and dump the object
     with open(filename, 'wb') as file:
         pickle.dump(output_runs, file)

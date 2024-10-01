@@ -32,6 +32,7 @@ def create_sliding_windows(df, window_size, step_size,columns_to_select):
 #     loaded_data = pickle.load(file)
 
 if __name__ == "__main__":
+    tstart = time.time()
     df = pd.read_excel("./data/input_hms/CH 2016 -2023.xlsx")
     # Set the window size (720 rows) and step size (1 row or 1 hour)
     window_size = 720
@@ -40,7 +41,7 @@ if __name__ == "__main__":
     # Create the sliding windows
     windows, start_dates, end_dates = create_sliding_windows(df, window_size, step_size,columns_to_select)
 
-    windows = windows[0:20]
+    windows = windows[20:40]
 
     new_data = []
     for i in range(20):
@@ -61,3 +62,5 @@ if __name__ == "__main__":
         # Open the file in write-binary mode and dump the object
         with open(filename, 'wb') as file:
             pickle.dump(output_runs, file)
+    tend = time.time()
+    print(f"Runtime {tend-tstart}s")

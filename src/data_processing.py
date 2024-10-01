@@ -4,15 +4,17 @@ import pandas as pd
 import json
 from datetime import datetime, timedelta
 
-def transform_input_demo_into_ready_to_use(filename):
+def transform_input_demo_into_ready_to_use(data, filename = None):
     """
     convert input demo data into ready to process
     Args:
+        data (df): provided data
         filename(str): excel filename of data input dummy
     Returns:
         output(dict): data ready to use for preprocessing to input ml1 or hms
     """
-    data = pd.read_excel(filename)
+    if filename:
+        data = pd.read_excel(filename)
     output = {}
     for t in data['time']:
         df = data[data['time'] == t]
@@ -120,7 +122,7 @@ def get_input_hms(ingested_data,ingested_data_name, path_conf_grided_to_df,path_
     for idx in indexes:
         dict_prec[f'INDEX{idx}'] = prec[:,idx]
     df = pd.DataFrame(dict_prec)
-    return all_grided_data_hms,df 
+    return all_grided_data_hms,df
 
 def convert_prec_grided_to_ch_wilayah(prec_grided, idx_chosen):
     if isinstance(prec_grided, list):
@@ -145,7 +147,7 @@ def get_transformation_config(path_config_stas_to_grid, path_config_grid_to_subd
     # Open the stasiun_to_grid.json file and load the data
     with open(path_config_stas_to_grid, 'r') as file:
         pct_stasiun_at_grid = json.load(file)
-    
+
     # Open the stasiun_to_grid.json file and load the data
     with open(path_config_grid_to_subdas, 'r') as file:
         pct_gsmap_at_subbasin = json.load(file)

@@ -51,7 +51,7 @@ if __name__ == "__main__":
                         "end date precip": end_dates[n],
                         "data prcip": data,
                         "data debit": all_val}
-        filename = "./data/output_hms/start hujan {start_dates[n]} end hujan {end_dates[n]}.pkl"
+        filename = f"./data/output_hms/start hujan {start_dates[n]} end hujan {end_dates[n]}.pkl"
         # Open the file in write-binary mode and dump the object
         with open(filename, 'wb') as file:
             pickle.dump(output_runs, file)

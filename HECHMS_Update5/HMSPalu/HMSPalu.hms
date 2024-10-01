@@ -1,0 +1,27 @@
+Project: HMSPalu
+     Description: Edit outlet for each time lag
+     Version: 4.12
+     Filepath Separator: /
+     DSS File Name: HMSPalu.dss
+     Time Zone ID: Asia/Tokyo
+End:
+
+Precipitation: cobahms3
+     Filename: cobahms3.met
+     Description: GeoHMS generated met file for cobahms3
+     Last Modified Date: 6 October 2024
+     Last Modified Time: 12:14
+End:
+
+Basin: cobahms3
+     Filename: cobahms3.basin
+     Description: GeoHMS generated basin file for cobahms3
+     Last Modified Date: 30 August 2024
+     Last Modified Time: 06:17
+End:
+
+Control: JAN2024
+     FileName: JAN2024.control
+     Description: 
+End:
+

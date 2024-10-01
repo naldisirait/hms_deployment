@@ -1,0 +1,1564 @@
+Meteorology: cobahms3
+     Description: Met model created with HEC-GeoHMS v6.0
+     Last Modified Date: 10 June 2024
+     Last Modified Time: 02:22:14
+     Version: 4.12
+     Unit System: Metric
+     Set Missing Data to Default: Yes
+     Precipitation Method: Weighted Gages
+     Air Temperature Method: None
+     Atmospheric Pressure Method: None
+     Dew Point Method: None
+     Wind Speed Method: None
+     Shortwave Radiation Method: None
+     Longwave Radiation Method: None
+     Snowmelt Method: None
+     Evapotranspiration Method: No Evapotranspiration
+     Use Basin Model: cobahms3
+End:
+
+Gage: index58
+     Type: Recording
+End:
+
+Gage: index59
+     Type: Recording
+End:
+
+Gage: index60
+     Type: Recording
+End:
+
+Gage: index75
+     Type: Recording
+End:
+
+Gage: index76
+     Type: Recording
+End:
+
+Gage: index77
+     Type: Recording
+End:
+
+Gage: index91
+     Type: Recording
+End:
+
+Gage: index92
+     Type: Recording
+End:
+
+Gage: index93
+     Type: Recording
+End:
+
+Gage: index94
+     Type: Recording
+End:
+
+Gage: index95
+     Type: Recording
+End:
+
+Gage: index96
+     Type: Recording
+End:
+
+Gage: index108
+     Type: Recording
+End:
+
+Gage: index109
+     Type: Recording
+End:
+
+Gage: index110
+     Type: Recording
+End:
+
+Gage: index111
+     Type: Recording
+End:
+
+Gage: index112
+     Type: Recording
+End:
+
+Gage: index113
+     Type: Recording
+End:
+
+Gage: index126
+     Type: Recording
+End:
+
+Gage: index127
+     Type: Recording
+End:
+
+Gage: index128
+     Type: Recording
+End:
+
+Gage: index129
+     Type: Recording
+End:
+
+Gage: index130
+     Type: Recording
+End:
+
+Gage: index131
+     Type: Recording
+End:
+
+Gage: index143
+     Type: Recording
+End:
+
+Gage: index144
+     Type: Recording
+End:
+
+Gage: index145
+     Type: Recording
+End:
+
+Gage: index146
+     Type: Recording
+End:
+
+Gage: index147
+     Type: Recording
+End:
+
+Gage: index148
+     Type: Recording
+End:
+
+Gage: index160
+     Type: Recording
+End:
+
+Gage: index161
+     Type: Recording
+End:
+
+Gage: index162
+     Type: Recording
+End:
+
+Gage: index163
+     Type: Recording
+End:
+
+Gage: index164
+     Type: Recording
+End:
+
+Gage: index177
+     Type: Recording
+End:
+
+Gage: index178
+     Type: Recording
+End:
+
+Gage: index74
+     Type: Recording
+End:
+
+Precip Method Parameters: Weighted Gages
+     Last Modified Date: 10 June 2024
+     Last Modified Time: 02:33:04
+     Use HEC1 Weighting Scheme: Yes
+     Use Indexing: No
+     Allow Depth Override: No
+End:
+
+Subbasin: Subbasin-1
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index144
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W12980
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index75
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: Subbasin-2
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index110
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: Subbasin-3
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index92
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13280
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index112
+     Volume Weight: 0.38
+     Temporal Distribution Weight: 1
+     Gage: index113
+     Volume Weight: 0.13
+     Temporal Distribution Weight: 0
+     Gage: index95
+     Volume Weight: 0.31
+     Temporal Distribution Weight: 0
+     Gage: index96
+     Volume Weight: 0.18
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13160
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index91
+     Volume Weight: 0.37
+     Temporal Distribution Weight: 0
+     Gage: index92
+     Volume Weight: 0.63
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13040
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index74
+     Volume Weight: 0.41
+     Temporal Distribution Weight: 1
+     Gage: index75
+     Volume Weight: 0.35
+     Temporal Distribution Weight: 0
+     Gage: index91
+     Volume Weight: 0.22
+     Temporal Distribution Weight: 0
+     Gage: index92
+     Volume Weight: 0.02
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W14250
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index128
+     Volume Weight: 0.31
+     Temporal Distribution Weight: 0
+     Gage: index129
+     Volume Weight: 0.69
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13680
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index129
+     Volume Weight: 0.22
+     Temporal Distribution Weight: 0
+     Gage: index130
+     Volume Weight: 0.04
+     Temporal Distribution Weight: 0
+     Gage: index146
+     Volume Weight: 0.4
+     Temporal Distribution Weight: 0
+     Gage: index147
+     Volume Weight: 0.35
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W14010
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index160
+     Volume Weight: 0.42
+     Temporal Distribution Weight: 1
+     Gage: index161
+     Volume Weight: 0.33
+     Temporal Distribution Weight: 0
+     Gage: index177
+     Volume Weight: 0.2
+     Temporal Distribution Weight: 0
+     Gage: index178
+     Volume Weight: 0.06
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13440
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index111
+     Volume Weight: 0.27
+     Temporal Distribution Weight: 0
+     Gage: index128
+     Volume Weight: 0.73
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13320
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index112
+     Volume Weight: 0.68
+     Temporal Distribution Weight: 1
+     Gage: index95
+     Volume Weight: 0.32
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13200
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index92
+     Volume Weight: 0.9
+     Temporal Distribution Weight: 1
+     Gage: index93
+     Volume Weight: 0.1
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13960
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index161
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13840
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index146
+     Volume Weight: 0.36
+     Temporal Distribution Weight: 0
+     Gage: index163
+     Volume Weight: 0.64
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13600
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index127
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W12970
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index75
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13290
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index109
+     Volume Weight: 0.41
+     Temporal Distribution Weight: 0
+     Gage: index110
+     Volume Weight: 0.59
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13170
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index93
+     Volume Weight: 0.01
+     Temporal Distribution Weight: 0
+     Gage: index94
+     Volume Weight: 0.99
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13050
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index75
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13690
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index144
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W14020
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index161
+     Volume Weight: 0.05
+     Temporal Distribution Weight: 0
+     Gage: index177
+     Volume Weight: 0.28
+     Temporal Distribution Weight: 0
+     Gage: index178
+     Volume Weight: 0.67
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13570
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index112
+     Volume Weight: 0.59
+     Temporal Distribution Weight: 1
+     Gage: index129
+     Volume Weight: 0.41
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13450
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index110
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13330
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index108
+     Volume Weight: 0.15
+     Temporal Distribution Weight: 0
+     Gage: index109
+     Volume Weight: 0.85
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13210
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index93
+     Volume Weight: 0.85
+     Temporal Distribution Weight: 1
+     Gage: index94
+     Volume Weight: 0.15
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13970
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index163
+     Volume Weight: 0.97
+     Temporal Distribution Weight: 1
+     Gage: index164
+     Volume Weight: 0.03
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W14300
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index128
+     Volume Weight: 0.01
+     Temporal Distribution Weight: 0
+     Gage: index129
+     Volume Weight: 0.58
+     Temporal Distribution Weight: 1
+     Gage: index145
+     Volume Weight: 0
+     Temporal Distribution Weight: 0
+     Gage: index146
+     Volume Weight: 0.41
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13850
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index146
+     Volume Weight: 0.37
+     Temporal Distribution Weight: 0
+     Gage: index147
+     Volume Weight: 0.03
+     Temporal Distribution Weight: 0
+     Gage: index163
+     Volume Weight: 0.53
+     Temporal Distribution Weight: 1
+     Gage: index164
+     Volume Weight: 0.08
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13730
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index145
+     Volume Weight: 0.99
+     Temporal Distribution Weight: 1
+     Gage: index162
+     Volume Weight: 0.01
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13380
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index111
+     Volume Weight: 0.56
+     Temporal Distribution Weight: 1
+     Gage: index128
+     Volume Weight: 0.44
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13260
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index110
+     Volume Weight: 0.55
+     Temporal Distribution Weight: 1
+     Gage: index111
+     Volume Weight: 0.18
+     Temporal Distribution Weight: 0
+     Gage: index93
+     Volume Weight: 0.18
+     Temporal Distribution Weight: 0
+     Gage: index94
+     Volume Weight: 0.09
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13140
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index91
+     Volume Weight: 0.02
+     Temporal Distribution Weight: 0
+     Gage: index92
+     Volume Weight: 0.98
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13020
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index75
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13780
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index145
+     Volume Weight: 0.04
+     Temporal Distribution Weight: 0
+     Gage: index146
+     Volume Weight: 0.93
+     Temporal Distribution Weight: 1
+     Gage: index147
+     Volume Weight: 0.03
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13660
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index128
+     Volume Weight: 0.46
+     Temporal Distribution Weight: 0
+     Gage: index145
+     Volume Weight: 0.54
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13540
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index112
+     Volume Weight: 0.08
+     Temporal Distribution Weight: 0
+     Gage: index113
+     Volume Weight: 0.62
+     Temporal Distribution Weight: 1
+     Gage: index129
+     Volume Weight: 0.01
+     Temporal Distribution Weight: 0
+     Gage: index130
+     Volume Weight: 0.29
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13420
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index111
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13300
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index108
+     Volume Weight: 0.04
+     Temporal Distribution Weight: 0
+     Gage: index109
+     Volume Weight: 0.91
+     Temporal Distribution Weight: 1
+     Gage: index110
+     Volume Weight: 0.01
+     Temporal Distribution Weight: 0
+     Gage: index92
+     Volume Weight: 0.04
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13940
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index145
+     Volume Weight: 0.03
+     Temporal Distribution Weight: 0
+     Gage: index161
+     Volume Weight: 0.47
+     Temporal Distribution Weight: 0
+     Gage: index162
+     Volume Weight: 0.5
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13700
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index143
+     Volume Weight: 0.41
+     Temporal Distribution Weight: 0
+     Gage: index144
+     Volume Weight: 0.59
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W12990
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index75
+     Volume Weight: 0.98
+     Temporal Distribution Weight: 1
+     Gage: index76
+     Volume Weight: 0.02
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13390
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index111
+     Volume Weight: 0.11
+     Temporal Distribution Weight: 0
+     Gage: index112
+     Volume Weight: 0.87
+     Temporal Distribution Weight: 1
+     Gage: index129
+     Volume Weight: 0.02
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13270
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index111
+     Volume Weight: 0.16
+     Temporal Distribution Weight: 0
+     Gage: index112
+     Volume Weight: 0.2
+     Temporal Distribution Weight: 0
+     Gage: index94
+     Volume Weight: 0.04
+     Temporal Distribution Weight: 0
+     Gage: index95
+     Volume Weight: 0.6
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13150
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index93
+     Volume Weight: 0.76
+     Temporal Distribution Weight: 1
+     Gage: index94
+     Volume Weight: 0.24
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13030
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index75
+     Volume Weight: 0.1
+     Temporal Distribution Weight: 0
+     Gage: index76
+     Volume Weight: 0.9
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13790
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index146
+     Volume Weight: 0.21
+     Temporal Distribution Weight: 0
+     Gage: index147
+     Volume Weight: 0.43
+     Temporal Distribution Weight: 1
+     Gage: index164
+     Volume Weight: 0.37
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13670
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index128
+     Volume Weight: 0.02
+     Temporal Distribution Weight: 0
+     Gage: index145
+     Volume Weight: 0.98
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13430
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index111
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13310
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index110
+     Volume Weight: 0.06
+     Temporal Distribution Weight: 0
+     Gage: index111
+     Volume Weight: 0.68
+     Temporal Distribution Weight: 1
+     Gage: index94
+     Volume Weight: 0.26
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13950
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index161
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13830
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index146
+     Volume Weight: 0.36
+     Temporal Distribution Weight: 0
+     Gage: index163
+     Volume Weight: 0.64
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13710
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index144
+     Volume Weight: 0.77
+     Temporal Distribution Weight: 1
+     Gage: index145
+     Volume Weight: 0.23
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W12940
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index58
+     Volume Weight: 0.4
+     Temporal Distribution Weight: 0
+     Gage: index75
+     Volume Weight: 0.6
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13080
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index75
+     Volume Weight: 0.24
+     Temporal Distribution Weight: 0
+     Gage: index76
+     Volume Weight: 0.05
+     Temporal Distribution Weight: 0
+     Gage: index91
+     Volume Weight: 0.1
+     Temporal Distribution Weight: 0
+     Gage: index92
+     Volume Weight: 0.54
+     Temporal Distribution Weight: 1
+     Gage: index93
+     Volume Weight: 0.07
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W14050
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index112
+     Volume Weight: 0.02
+     Temporal Distribution Weight: 0
+     Gage: index129
+     Volume Weight: 0.61
+     Temporal Distribution Weight: 1
+     Gage: index130
+     Volume Weight: 0.38
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13480
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index112
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13360
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index110
+     Volume Weight: 0.18
+     Temporal Distribution Weight: 0
+     Gage: index111
+     Volume Weight: 0.32
+     Temporal Distribution Weight: 0
+     Gage: index127
+     Volume Weight: 0.33
+     Temporal Distribution Weight: 1
+     Gage: index128
+     Volume Weight: 0.17
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13240
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index94
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13120
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index93
+     Volume Weight: 0.91
+     Temporal Distribution Weight: 1
+     Gage: index94
+     Volume Weight: 0.09
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13000
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index59
+     Volume Weight: 0.09
+     Temporal Distribution Weight: 0
+     Gage: index60
+     Volume Weight: 0.04
+     Temporal Distribution Weight: 0
+     Gage: index75
+     Volume Weight: 0.03
+     Temporal Distribution Weight: 0
+     Gage: index76
+     Volume Weight: 0.77
+     Temporal Distribution Weight: 1
+     Gage: index77
+     Volume Weight: 0.08
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13880
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index143
+     Volume Weight: 0.07
+     Temporal Distribution Weight: 0
+     Gage: index144
+     Volume Weight: 0.14
+     Temporal Distribution Weight: 0
+     Gage: index160
+     Volume Weight: 0.34
+     Temporal Distribution Weight: 0
+     Gage: index161
+     Volume Weight: 0.45
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W14210
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index60
+     Volume Weight: 0.25
+     Temporal Distribution Weight: 0
+     Gage: index76
+     Volume Weight: 0.25
+     Temporal Distribution Weight: 0
+     Gage: index77
+     Volume Weight: 0.5
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13760
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index143
+     Volume Weight: 0.26
+     Temporal Distribution Weight: 0
+     Gage: index144
+     Volume Weight: 0.74
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13640
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index127
+     Volume Weight: 0.11
+     Temporal Distribution Weight: 0
+     Gage: index128
+     Volume Weight: 0.59
+     Temporal Distribution Weight: 1
+     Gage: index144
+     Volume Weight: 0.11
+     Temporal Distribution Weight: 0
+     Gage: index145
+     Volume Weight: 0.18
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13520
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index112
+     Volume Weight: 0.28
+     Temporal Distribution Weight: 0
+     Gage: index129
+     Volume Weight: 0.72
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13400
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index112
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13920
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index162
+     Volume Weight: 0.62
+     Temporal Distribution Weight: 1
+     Gage: index163
+     Volume Weight: 0.38
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13800
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index145
+     Volume Weight: 0.42
+     Temporal Distribution Weight: 1
+     Gage: index146
+     Volume Weight: 0.4
+     Temporal Distribution Weight: 0
+     Gage: index162
+     Volume Weight: 0.16
+     Temporal Distribution Weight: 0
+     Gage: index163
+     Volume Weight: 0.01
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W12930
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index58
+     Volume Weight: 0
+     Temporal Distribution Weight: 0
+     Gage: index59
+     Volume Weight: 0.52
+     Temporal Distribution Weight: 1
+     Gage: index60
+     Volume Weight: 0.4
+     Temporal Distribution Weight: 0
+     Gage: index75
+     Volume Weight: 0.01
+     Temporal Distribution Weight: 0
+     Gage: index76
+     Volume Weight: 0.07
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13090
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index77
+     Volume Weight: 0.36
+     Temporal Distribution Weight: 0
+     Gage: index93
+     Volume Weight: 0.03
+     Temporal Distribution Weight: 0
+     Gage: index94
+     Volume Weight: 0.61
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W14060
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index129
+     Volume Weight: 0.03
+     Temporal Distribution Weight: 0
+     Gage: index130
+     Volume Weight: 0.67
+     Temporal Distribution Weight: 1
+     Gage: index131
+     Volume Weight: 0.03
+     Temporal Distribution Weight: 0
+     Gage: index147
+     Volume Weight: 0.24
+     Temporal Distribution Weight: 0
+     Gage: index148
+     Volume Weight: 0.02
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13490
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index109
+     Volume Weight: 0.7
+     Temporal Distribution Weight: 1
+     Gage: index126
+     Volume Weight: 0.3
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13370
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index111
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13250
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index111
+     Volume Weight: 0.2
+     Temporal Distribution Weight: 0
+     Gage: index94
+     Volume Weight: 0.59
+     Temporal Distribution Weight: 1
+     Gage: index95
+     Volume Weight: 0.21
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13130
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index93
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13010
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index74
+     Volume Weight: 0.81
+     Temporal Distribution Weight: 1
+     Gage: index75
+     Volume Weight: 0.19
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13890
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index144
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W14100
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index111
+     Volume Weight: 0.44
+     Temporal Distribution Weight: 1
+     Gage: index112
+     Volume Weight: 0.41
+     Temporal Distribution Weight: 0
+     Gage: index128
+     Volume Weight: 0.04
+     Temporal Distribution Weight: 0
+     Gage: index129
+     Volume Weight: 0.11
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13770
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index143
+     Volume Weight: 0.07
+     Temporal Distribution Weight: 0
+     Gage: index144
+     Volume Weight: 0.85
+     Temporal Distribution Weight: 1
+     Gage: index145
+     Volume Weight: 0.05
+     Temporal Distribution Weight: 0
+     Gage: index161
+     Volume Weight: 0.03
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13650
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index128
+     Volume Weight: 0.81
+     Temporal Distribution Weight: 1
+     Gage: index129
+     Volume Weight: 0.01
+     Temporal Distribution Weight: 0
+     Gage: index145
+     Volume Weight: 0.17
+     Temporal Distribution Weight: 0
+     Gage: index146
+     Volume Weight: 0.01
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13410
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index111
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13930
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index160
+     Volume Weight: 0.09
+     Temporal Distribution Weight: 0
+     Gage: index161
+     Volume Weight: 0.91
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13810
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index147
+     Volume Weight: 0.74
+     Temporal Distribution Weight: 1
+     Gage: index164
+     Volume Weight: 0.26
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W12960
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index58
+     Volume Weight: 0.03
+     Temporal Distribution Weight: 0
+     Gage: index59
+     Volume Weight: 0.01
+     Temporal Distribution Weight: 0
+     Gage: index75
+     Volume Weight: 0.96
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13180
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index110
+     Volume Weight: 0.77
+     Temporal Distribution Weight: 1
+     Gage: index127
+     Volume Weight: 0.07
+     Temporal Distribution Weight: 0
+     Gage: index93
+     Volume Weight: 0.16
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13060
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index75
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W14150
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index75
+     Volume Weight: 0.6
+     Temporal Distribution Weight: 1
+     Gage: index76
+     Volume Weight: 0.4
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W14030
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index178
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13580
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index110
+     Volume Weight: 0.69
+     Temporal Distribution Weight: 1
+     Gage: index127
+     Volume Weight: 0.31
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13460
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index109
+     Volume Weight: 0.01
+     Temporal Distribution Weight: 0
+     Gage: index110
+     Volume Weight: 0.99
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13340
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index109
+     Volume Weight: 0.23
+     Temporal Distribution Weight: 0
+     Gage: index110
+     Volume Weight: 0.77
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13220
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index110
+     Volume Weight: 0.26
+     Temporal Distribution Weight: 0
+     Gage: index92
+     Volume Weight: 0.04
+     Temporal Distribution Weight: 0
+     Gage: index93
+     Volume Weight: 0.7
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13100
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index93
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13980
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index161
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13860
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index146
+     Volume Weight: 0.6
+     Temporal Distribution Weight: 1
+     Gage: index163
+     Volume Weight: 0.4
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13740
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index145
+     Volume Weight: 0.5
+     Temporal Distribution Weight: 0
+     Gage: index162
+     Volume Weight: 0.5
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13620
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index126
+     Volume Weight: 0.19
+     Temporal Distribution Weight: 0
+     Gage: index127
+     Volume Weight: 0.33
+     Temporal Distribution Weight: 0
+     Gage: index143
+     Volume Weight: 0.45
+     Temporal Distribution Weight: 1
+     Gage: index144
+     Volume Weight: 0.03
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13500
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index109
+     Volume Weight: 0.21
+     Temporal Distribution Weight: 0
+     Gage: index110
+     Volume Weight: 0.09
+     Temporal Distribution Weight: 0
+     Gage: index126
+     Volume Weight: 0.64
+     Temporal Distribution Weight: 1
+     Gage: index127
+     Volume Weight: 0.06
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13900
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index144
+     Volume Weight: 0.03
+     Temporal Distribution Weight: 0
+     Gage: index160
+     Volume Weight: 0.52
+     Temporal Distribution Weight: 1
+     Gage: index161
+     Volume Weight: 0.45
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13190
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index93
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13070
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index76
+     Volume Weight: 0.08
+     Temporal Distribution Weight: 0
+     Gage: index77
+     Volume Weight: 0.76
+     Temporal Distribution Weight: 1
+     Gage: index93
+     Volume Weight: 0.13
+     Temporal Distribution Weight: 0
+     Gage: index94
+     Volume Weight: 0.02
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13590
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index110
+     Volume Weight: 0.01
+     Temporal Distribution Weight: 0
+     Gage: index126
+     Volume Weight: 0.74
+     Temporal Distribution Weight: 1
+     Gage: index127
+     Volume Weight: 0.24
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13470
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index112
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13350
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index111
+     Volume Weight: 0.81
+     Temporal Distribution Weight: 1
+     Gage: index128
+     Volume Weight: 0.1
+     Temporal Distribution Weight: 0
+     Gage: index94
+     Volume Weight: 0.09
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13230
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index109
+     Volume Weight: 0.37
+     Temporal Distribution Weight: 0
+     Gage: index110
+     Volume Weight: 0.03
+     Temporal Distribution Weight: 0
+     Gage: index92
+     Volume Weight: 0.58
+     Temporal Distribution Weight: 1
+     Gage: index93
+     Volume Weight: 0.02
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13110
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index76
+     Volume Weight: 0.07
+     Temporal Distribution Weight: 0
+     Gage: index92
+     Volume Weight: 0.09
+     Temporal Distribution Weight: 0
+     Gage: index93
+     Volume Weight: 0.84
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13990
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index161
+     Volume Weight: 0.94
+     Temporal Distribution Weight: 1
+     Gage: index178
+     Volume Weight: 0.06
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W14200
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index76
+     Volume Weight: 0.95
+     Temporal Distribution Weight: 1
+     Gage: index93
+     Volume Weight: 0.05
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: Subbasin-4
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index75
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: Subbasin-5
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index75
+     Volume Weight: 1
+     Temporal Distribution Weight: 1
+End:
+
+Subbasin: W13630
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index127
+     Volume Weight: 0.85
+     Temporal Distribution Weight: 1
+     Gage: index128
+     Volume Weight: 0.11
+     Temporal Distribution Weight: 0
+     Gage: index144
+     Volume Weight: 0.04
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13510
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index112
+     Volume Weight: 0.67
+     Temporal Distribution Weight: 1
+     Gage: index113
+     Volume Weight: 0.33
+     Temporal Distribution Weight: 0
+End:
+
+Subbasin: W13910
+     Last Modified Date: 21 September 2024
+     Last Modified Time: 07:57:31
+     Gage: index145
+     Volume Weight: 0.46
+     Temporal Distribution Weight: 1
+     Gage: index146
+     Volume Weight: 0.12
+     Temporal Distribution Weight: 0
+     Gage: index161
+     Volume Weight: 0.42
+     Temporal Distribution Weight: 0
+End:

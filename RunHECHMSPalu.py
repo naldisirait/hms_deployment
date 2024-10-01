@@ -37,7 +37,7 @@ def run_hec_hms(script_path):
         print("An error occurred while running HEC-HMS:")
         print(e.stderr)
 
-def run_hms_palu(precip_dict):
+def run_hms_palu(precip_dict,path_hecms_model):
     """
     function to run HMS
     Args:
@@ -58,7 +58,7 @@ def run_hms_palu(precip_dict):
     # Create a list of hourly datetime objects
     dates = [start_date + datetime.timedelta(hours=i) for i in range(num_hours + 1)]
 
-    dssOutFile = "./HECHMS_Update1/CH/GridGSMAP_corrected.dss"
+    dssOutFile = f"./{path_hecms_model}/CH/GridGSMAP_corrected.dss"
 
     # Check if the file exists
     if os.path.exists(dssOutFile):
@@ -79,18 +79,18 @@ def run_hms_palu(precip_dict):
     dssIn.close()
 
     project_name = "HMSPalu"
-    project_path = "./HECHMS_Update1/HMSPalu"  # Update to your project path
+    project_path = f"./{path_hecms_model}/HMSPalu"  # Update to your project path
     run_name = "JAN2024"
     
     # Create the control script
-    control_script_path = "./HECHMS_Update1/HMSPalu/compute.script"  # Path to save the control script
+    control_script_path = f"./{path_hecms_model}/HMSPalu/compute.script"  # Path to save the control script
     create_control_script(control_script_path, project_name, project_path, run_name)
     
     # Run HEC-HMS with the control script
     run_hec_hms(control_script_path)
 
     # Open a DSS file
-    file_loc = "./HECHMS_Update1/HMSPalu"
+    file_loc = f"./{path_hecms_model}/HMSPalu"
     file_name = "JAN2024.dss"
 
     file_path = file_loc + '/' + file_name
@@ -99,5 +99,4 @@ def run_hms_palu(precip_dict):
     data_path = "//Outlet-Banjir/FLOW//1Hour/RUN:JAN2024/"    
     data = dss.get(data_path)
     Val = data.values
-    print(Val)
     return Val[672:744], Val

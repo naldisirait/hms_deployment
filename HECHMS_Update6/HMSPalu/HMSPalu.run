@@ -1,0 +1,18 @@
+Run: JAN2024
+     Default Description: Yes
+     Log File: JAN2024.log
+     DSS File: JAN2024.dss
+     Is Save Spatial Results: No
+     Last Modified Date: 25 September 2024
+     Last Modified Time: 07:26:55
+     Last Execution Date: 27 September 2024
+     Last Execution Time: 21:50:17
+     Basin: cobahms3
+     Precip: cobahms3
+     Control: JAN2024
+     Save State Type: None
+     Time-Series Output: Save All
+     Time Series Results Manager Start:
+     Time Series Results Manager End:
+End:
+

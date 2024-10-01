@@ -73,7 +73,7 @@ if __name__ == "__main__":
     #bundle into tuples and run hms with multiprocessing
     config_and_data = [(new_start_dates[i], new_end_dates[i], new_data[i], new_hms_project_paths[i]) for i in range(total_sim)]
     with mp.Pool(processes=n_cpus) as pool:
-        outputs = pool.map(run_hms_palu,config_and_data)
+        outputs = pool.map(run_hms_with_mp,config_and_data)
     tend = time.time()
     print(f"Runtime {tend-tstart}s")
 

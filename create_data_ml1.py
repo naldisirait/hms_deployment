@@ -50,8 +50,12 @@ if __name__ == "__main__":
     # Create the sliding windows
     windows, start_dates, end_dates = create_sliding_windows(df, window_size, step_size,columns_to_select)
     
-    total_sim = 3000
-    windows = windows[0:total_sim]
+    total_simulated = 3000
+    total_sim = 45000
+    windows = windows[total_simulated:total_simulated+total_sim]
+    start_dates = start_dates[total_simulated:total_simulated+total_sim]
+    end_dates = start_dates[total_simulated:total_simulated+total_sim]
+    
     #buat data ke dalam list agar bisa di kirim kedalam fungsi untuk di run paralel
     new_data = []
     new_start_dates = []
@@ -70,6 +74,7 @@ if __name__ == "__main__":
             n = 0
         new_hms_project_paths.append(project_paths[n])
         n+=1
+
     #bundle into tuples and run hms with multiprocessing
     config_and_data = [(new_start_dates[i], new_end_dates[i], new_data[i], new_hms_project_paths[i]) for i in range(total_sim)]
     with mp.Pool(processes=n_cpus) as pool:

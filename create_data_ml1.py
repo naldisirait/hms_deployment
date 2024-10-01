@@ -41,7 +41,7 @@ if __name__ == "__main__":
     # Create the sliding windows
     windows, start_dates, end_dates = create_sliding_windows(df, window_size, step_size,columns_to_select)
 
-    windows = windows[20:40]
+    windows = windows[0:20]
 
     new_data = []
     for i in range(20):

@@ -5,16 +5,21 @@ from src.utils import open_json_file
 import numpy as np
 import pandas as pd
 
-
 # Function to create sliding windows
-def create_sliding_windows(df, window_size, step_size):
+def create_sliding_windows(df, window_size, step_size,columns_to_select):
+    # List of columns you want to select
+    # Select only those columns
+    dates = df['time'].values
+    df_selected = df[columns_to_select]
     windows = []
-    for i in range(0, len(df) - window_size + 1, step_size):
-        window = df.iloc[i:i + window_size]
+    start_dates = []
+    end_dates = []
+    for i in range(0, len(df_selected) - window_size + 1, step_size):
+        window = df_selected.iloc[i:i + window_size]
         windows.append(window)
-    return windows
-
-
+        start_dates.append(dates[i])
+        end_dates.append(dates[i+window_size-1])
+    return windows, start_dates, end_dates
 
 # filename = r"./data/input_hms/windowing data input hms.pkl"
 # with open(filename, 'rb') as file:
@@ -22,22 +27,17 @@ def create_sliding_windows(df, window_size, step_size):
 
 if __name__ == "__main__":
     df = pd.read_excel("./data/input_hms/CH 2016 -2023.xlsx")
-    # List of columns you want to select
-    columns_to_select = ['CH BANGGA BAWAH', 'CH TONGOA', 'CH INTAKE LEWARA', 'SAMBO', 'CH TUVA']
-    # Select only those columns
-    df_selected = df[columns_to_select]
-
     # Set the window size (720 rows) and step size (1 row or 1 hour)
     window_size = 720
     step_size = 1
-
+    columns_to_select = ['CH BANGGA BAWAH', 'CH TONGOA', 'CH INTAKE LEWARA', 'SAMBO', 'CH TUVA']
     # Create the sliding windows
-    windows = create_sliding_windows(df_selected, window_size, step_size)
+    windows, start_dates, end_dates = create_sliding_windows(df, window_size, step_size,columns_to_select)
 
-    windows = windows[0:3000]
+    windows = windows[0:20]
 
     new_data = []
-    for i in range(3000):
+    for i in range(20):
         asd = windows[i]
         dicts = {}
         for col in columns_to_select:
@@ -45,11 +45,13 @@ if __name__ == "__main__":
         new_data.append(dicts)
 
     output_all_runs = []
-    for data in new_data:
+    for n,data in enumerate(new_data):
         _, all_val = run_hms_palu(data)
-        output_all_runs.append(all_val)
-
-    filename = "output 3000 simulasi hms.pkl"
-    # Open the file in write-binary mode and dump the object
-    with open(filename, 'wb') as file:
-        pickle.dump(output_all_runs, file)
+        output_runs  = {"start date precip": start_dates[n],
+                        "end date precip": end_dates[n],
+                        "data prcip": data,
+                        "data debit": all_val}
+        filename = "./data/output_hms/start hujan {start_dates[n]} end hujan {end_dates[n]}.pkl"
+        # Open the file in write-binary mode and dump the object
+        with open(filename, 'wb') as file:
+            pickle.dump(output_runs, file)

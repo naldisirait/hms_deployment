@@ -17,7 +17,7 @@ def create_sliding_windows(df, window_size, step_size,columns_to_select):
     for i in range(0, len(df_selected) - window_size + 1, step_size):
         window = df_selected.iloc[i:i + window_size]
         windows.append(window)
-        
+
         # Convert numpy.datetime64 to pandas datetime and format
         start_date = pd.to_datetime(dates[i]).strftime('%Y%m%d %H%M')
         end_date = pd.to_datetime(dates[i + window_size - 1]).strftime('%Y%m%d %H%M')
@@ -57,7 +57,7 @@ if __name__ == "__main__":
                         "end date precip": end_dates[n],
                         "data prcip": data,
                         "data debit": all_val}
-        filename = f"./data/output_hms/start hujan {start_dates[n]} end hujan {end_dates[n]}.pkl"
+        filename = f"data/output_hms/start hujan {start_dates[n]} end hujan {end_dates[n]}.pkl"
         # Open the file in write-binary mode and dump the object
         with open(filename, 'wb') as file:
             pickle.dump(output_runs, file)

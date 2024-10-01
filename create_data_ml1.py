@@ -17,8 +17,14 @@ def create_sliding_windows(df, window_size, step_size,columns_to_select):
     for i in range(0, len(df_selected) - window_size + 1, step_size):
         window = df_selected.iloc[i:i + window_size]
         windows.append(window)
-        start_dates.append(dates[i].strftime('%Y%m%d %H%M'))
-        end_dates.append(dates[i+window_size-1].strftime('%Y%m%d %H%M'))
+        
+        # Convert numpy.datetime64 to pandas datetime and format
+        start_date = pd.to_datetime(dates[i]).strftime('%Y%m%d %H%M')
+        end_date = pd.to_datetime(dates[i + window_size - 1]).strftime('%Y%m%d %H%M')
+        
+        start_dates.append(start_date)
+        end_dates.append(end_date)
+
     return windows, start_dates, end_dates
 
 # filename = r"./data/input_hms/windowing data input hms.pkl"

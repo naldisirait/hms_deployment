@@ -53,23 +53,20 @@ if __name__ == "__main__":
     total_simulated = 3000
     total_sim = 45000
     windows = windows[total_simulated:total_simulated+total_sim]
-    start_dates = start_dates[total_simulated:total_simulated+total_sim]
-    end_dates = start_dates[total_simulated:total_simulated+total_sim]
     
     #buat data ke dalam list agar bisa di kirim kedalam fungsi untuk di run paralel
     new_data = []
-    new_start_dates = []
-    new_end_dates = []
+    new_start_dates = start_dates[total_simulated:total_simulated+total_sim]
+    new_end_dates = start_dates[total_simulated:total_simulated+total_sim]
     new_hms_project_paths = []
     n = 0
-    for i in range(total_sim):
+
+    for i in range(total_simulated,total_sim+total_simulated):
         asd = windows[i]
         dicts = {}
         for col in columns_to_select:
             dicts[col] = asd[col].values
         new_data.append(dicts)
-        new_start_dates.append(start_dates[i])
-        new_end_dates.append(end_dates[i])
         if n == 6:
             n = 0
         new_hms_project_paths.append(project_paths[n])

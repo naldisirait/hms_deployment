@@ -12,7 +12,7 @@ from src.post_processing import output_ml1_to_dict, output_ml2_to_dict, ensure_j
 from RunHECHMSPalu import run_hms_palu
 
 # Function to create sliding windows
-def create_sliding_windows_input_hms(df,window_size,step_size,columns_to_select,path_config_stas_to_grid,path_config_grid_to_subdas,path_config_grid_to_df):
+def create_sliding_windows_input_hms(df,window_size,step_size,total_sim,columns_to_select,path_config_stas_to_grid,path_config_grid_to_subdas,path_config_grid_to_df):
     """
     Function to create an input data for HMS Simulation
     Args:
@@ -32,7 +32,9 @@ def create_sliding_windows_input_hms(df,window_size,step_size,columns_to_select,
     df_stasiuns = []
     start_dates = []
     end_dates = []
+    n = 0
     for i in range(0, len(df) - window_size + 1, step_size):
+        n+=1
         df_window = df.iloc[i:i + window_size]
         df_stasiuns.append(df_window)
         dates_window = df_window['time'].values
@@ -59,6 +61,8 @@ def create_sliding_windows_input_hms(df,window_size,step_size,columns_to_select,
         end_date = pd.to_datetime(dates_window[-1]).strftime('%Y%m%d %H%M')
         start_dates.append(start_date)
         end_dates.append(end_date)
+        if n== total_sim:
+            break
     return windows, df_stasiuns, every_precip_input_for_simulation_hms, start_dates, end_dates 
 
 def run_hms_with_mp(config_and_data):
@@ -97,13 +101,14 @@ if __name__ == "__main__":
     windows, df_stasiuns, every_precip_input_for_simulation_hms, start_dates, end_dates = create_sliding_windows_input_hms(
         df=df,                                           
         window_size=window_size,
+        total_sim=total_sim,
         step_size=step_size,
         columns_to_select=columns_to_select,
         path_config_stas_to_grid=path_config_stas_to_grid,
         path_config_grid_to_subdas=path_config_grid_to_subdas,
         path_config_grid_to_df=path_config_grid_to_df
         )
-     
+    
     # chose the data
     windows = windows[total_simulated:total_simulated+total_sim]
     df_stasiuns = df_stasiuns[total_simulated:total_simulated+total_sim]
